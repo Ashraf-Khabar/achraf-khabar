@@ -71,7 +71,7 @@ const handler = async (req: Request): Promise<Response> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Portfolio Contact <noreply@yourdomain.com>", // Update this with your verified domain
+        from: "Portfolio Contact <onboarding@resend.dev>", // Domaine par défaut Resend
         to: ["khabarachraf@gmail.com"],
         subject: `[Portfolio Contact] ${subject}`,
         html: `
