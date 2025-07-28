@@ -148,6 +148,11 @@ const BlogPostDetail = () => {
                 </p>
               )}
 
+              {/* Author Info */}
+              <div className="mb-4 text-sm text-foreground/80">
+                <span>Rédigé par : <span className="font-medium text-foreground">Achraf KHABAR</span>, Ingénieur Software</span>
+              </div>
+
               {/* Meta Info */}
               <div className="flex flex-wrap items-center gap-6 text-sm text-foreground/60 mb-6">
                 <div className="flex items-center gap-2">

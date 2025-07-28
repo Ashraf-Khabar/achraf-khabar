@@ -39,7 +39,7 @@ const Header = () => {
             to="/"
             className="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300"
           >
-            Portfolio
+            Achraf KHABAR
           </Link>
 
           {/* Desktop Navigation */}
