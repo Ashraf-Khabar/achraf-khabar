@@ -209,3 +209,100 @@
     transform: scale(1); 
   }
 }
+
+/* Rich Text Editor Styles */
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: hsl(var(--muted-foreground));
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.ProseMirror pre {
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  color: hsl(var(--foreground));
+  font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  padding: 0;
+}
+
+.ProseMirror code {
+  background: hsl(var(--muted));
+  border: 1px solid hsl(var(--border));
+  border-radius: 0.25rem;
+  color: hsl(var(--foreground));
+  font-family: 'JetBrains Mono', 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+  font-size: 0.875rem;
+  padding: 0.125rem 0.25rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid hsl(var(--primary));
+  margin: 1rem 0;
+  padding-left: 1rem;
+  font-style: italic;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ProseMirror h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem 0;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ProseMirror h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin: 1.5rem 0 1rem 0;
+  color: hsl(var(--primary));
+}
+
+.ProseMirror h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.75rem 0;
+  color: hsl(var(--accent));
+}
+
+.ProseMirror ul, .ProseMirror ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.ProseMirror li {
+  margin: 0.5rem 0;
+}
+
+.ProseMirror a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+
+.ProseMirror a:hover {
+  color: hsl(var(--accent));
+}

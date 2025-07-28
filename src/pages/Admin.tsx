@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { Plus, Edit, Trash, Save, Eye, LogOut, PenTool } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import RichTextEditor from "@/components/RichTextEditor";
 import type { User } from "@supabase/supabase-js";
 
 interface BlogPost {
@@ -335,12 +336,10 @@ const Admin = () => {
 
               <div>
                 <Label htmlFor="content">Contenu</Label>
-                <Textarea
-                  id="content"
-                  value={currentPost.content}
-                  onChange={(e) => setCurrentPost({...currentPost, content: e.target.value})}
-                  className="glass-card"
-                  rows={10}
+                <RichTextEditor
+                  content={currentPost.content || ""}
+                  onChange={(content) => setCurrentPost({...currentPost, content})}
+                  placeholder="Commencez à écrire votre article... Utilisez la barre d'outils pour formater le texte, ajouter du code et des images."
                 />
               </div>
 
