@@ -1,45 +1,59 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Star } from "lucide-react";
+import { ExternalLink, Github, Star, GitFork, Eye } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
+  const navigate = useNavigate();
   const projects = [
     {
-      title: "E-commerce Modern",
-      description: "Application e-commerce complète avec panier, paiement Stripe et interface admin. Design moderne et responsive.",
-      technologies: ["React", "TypeScript", "Stripe", "Supabase", "Tailwind"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: true
+      id: "flaskosql",
+      title: "FLASKOSQL",
+      description: "ORM pour bases de données relationnelles (Oracle et MySQL) avec API Flask. Fournit une manipulation simple des bases de données et un mapping simplifié.",
+      technologies: ["Python", "Flask", "Oracle", "MySQL", "ORM"],
+      githubUrl: "https://github.com/Ashraf-Khabar/FLASKOSQL",
+      liveUrl: "https://achrafkhabar.com/flaskoSQL",
+      stars: 1,
+      forks: 1,
+      featured: true,
+      category: "Backend / Database"
     },
     {
-      title: "Dashboard Analytics",
-      description: "Dashboard complet avec graphiques interactifs, filtres avancés et export de données en temps réel.",
-      technologies: ["Next.js", "Chart.js", "PostgreSQL", "TypeScript"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: true
+      id: "licence-plate-recognition",
+      title: "Vehicle License Plate Recognition",
+      description: "Système radar innovant pour la détection et reconnaissance des plaques d'immatriculation. Améliore la sécurité routière et facilite l'identification des véhicules.",
+      technologies: ["Python", "OpenCV", "Machine Learning", "Computer Vision", "OCR"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Licence-plate-recognition",
+      liveUrl: null,
+      stars: 2,
+      forks: 1,
+      featured: true,
+      category: "Computer Vision / AI"
     },
     {
-      title: "Application Mobile",
-      description: "App mobile cross-platform pour la gestion de tâches avec synchronisation cloud et notifications push.",
-      technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: false
+      id: "student-grade-manager",
+      title: "Student Grade Manager",
+      description: "Application web complète pour la gestion des notes étudiantes par modules, matières et enseignants. Construite avec Laravel et Oracle DB.",
+      technologies: ["Laravel", "PHP", "Oracle DB", "Bootstrap", "JavaScript"],
+      githubUrl: "https://github.com/Ashraf-Khabar/StudentGradeManager",
+      liveUrl: null,
+      stars: 1,
+      forks: 0,
+      featured: false,
+      category: "Web Application"
     },
     {
-      title: "API REST",
-      description: "API robuste avec authentification JWT, documentation Swagger et tests automatisés complets.",
-      technologies: ["Node.js", "Express", "MongoDB", "JWT", "Jest"],
-      image: "/api/placeholder/400/250",
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      featured: false
+      id: "data-science-docs",
+      title: "Data Science Documentation Hub",
+      description: "Collection complète de documents, CV et livres sur la science des données. Couvre ML, data mining, warehousing, et business intelligence.",
+      technologies: ["Data Science", "Machine Learning", "Python", "R", "Documentation"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Data-Science-Docs",
+      liveUrl: null,
+      stars: 3,
+      forks: 2,
+      featured: false,
+      category: "Documentation / Education"
     }
   ];
 
@@ -88,6 +102,18 @@ const Projects = () => {
                       {project.title.charAt(0)}
                     </span>
                   </div>
+                  
+                  {/* GitHub Stats */}
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <Badge variant="secondary" className="text-xs flex items-center gap-1">
+                      <Star className="w-3 h-3" />
+                      {project.stars}
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs flex items-center gap-1">
+                      <GitFork className="w-3 h-3" />
+                      {project.forks}
+                    </Badge>
+                  </div>
                 </div>
 
                 {/* Featured Badge */}
@@ -99,14 +125,41 @@ const Projects = () => {
                     </Badge>
                   </div>
                 )}
+                
+                {/* Category Badge */}
+                <div className="absolute bottom-4 left-4">
+                  <Badge variant="outline" className="glass-card text-xs">
+                    {project.category}
+                  </Badge>
+                </div>
 
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" className="glass-card">
-                      <ExternalLink className="w-4 h-4" />
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="glass-card"
+                      onClick={() => navigate(`/project/${project.id}`)}
+                    >
+                      <Eye className="w-4 h-4" />
                     </Button>
-                    <Button size="sm" variant="outline" className="glass-card">
+                    {project.liveUrl && (
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="glass-card"
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </Button>
+                    )}
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="glass-card"
+                      onClick={() => window.open(project.githubUrl, '_blank')}
+                    >
                       <Github className="w-4 h-4" />
                     </Button>
                   </div>
@@ -137,10 +190,10 @@ const Projects = () => {
                   <Button 
                     size="sm" 
                     className="flex-1 glow-border"
-                    onClick={() => window.open(project.liveUrl, '_blank')}
+                    onClick={() => navigate(`/project/${project.id}`)}
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Voir le projet
+                    <Eye className="w-4 h-4 mr-2" />
+                    Voir les détails
                   </Button>
                   <Button 
                     size="sm" 

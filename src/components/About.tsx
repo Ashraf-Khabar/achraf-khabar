@@ -1,33 +1,34 @@
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Code, Palette, Zap, Brain } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Code, Settings, TestTube, Database, Cloud, Cpu } from "lucide-react";
 
 const About = () => {
   const skills = [
-    "React", "TypeScript", "Node.js", "Python", "PostgreSQL", 
-    "Tailwind CSS", "Next.js", "Supabase", "AWS", "Docker"
+    "Python", "Selenium", "Docker", "CI/CD", "Jenkins", 
+    "Oracle DB", "MySQL", "Laravel", "PHP", "Machine Learning"
   ];
 
   const services = [
     {
-      icon: <Code className="w-8 h-8 text-primary" />,
-      title: "Développement Web",
-      description: "Applications web modernes et performantes avec les dernières technologies"
+      icon: <TestTube className="w-8 h-8 text-primary" />,
+      title: "Test Automation",
+      description: "Scripts d'automatisation des tests avec Python et Selenium pour garantir la qualité"
     },
     {
-      icon: <Palette className="w-8 h-8 text-accent" />,
-      title: "UI/UX Design",
-      description: "Interfaces utilisateur intuitives et expériences utilisateur optimales"
+      icon: <Settings className="w-8 h-8 text-accent" />,
+      title: "DevOps & SRE",
+      description: "Intégration et déploiement continus (CI/CD) pour des livraisons fiables"
     },
     {
-      icon: <Zap className="w-8 h-8 text-primary" />,
-      title: "Optimisation",
-      description: "Performance et SEO pour des applications rapides et bien référencées"
+      icon: <Database className="w-8 h-8 text-primary" />,
+      title: "Bases de Données",
+      description: "Expertise Oracle DB et MySQL avec développement d'ORM personnalisés"
     },
     {
-      icon: <Brain className="w-8 h-8 text-accent" />,
-      title: "Conseil Tech",
-      description: "Architecture technique et choix des bonnes technologies pour vos projets"
+      icon: <Cloud className="w-8 h-8 text-accent" />,
+      title: "Architecture Système",
+      description: "Conception d'architectures robustes et maintien des standards de production"
     }
   ];
 
@@ -40,7 +41,7 @@ const About = () => {
             À propos de moi
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Développeur passionné avec une expertise dans les technologies modernes
+            DevOps/SRE & QA Automation Engineer passionné par la fiabilité et l'automatisation
           </p>
         </div>
 
@@ -52,12 +53,13 @@ const About = () => {
               Mon Parcours
             </h3>
             <p className="text-foreground/80 leading-relaxed">
-              Diplômé en informatique avec plus de 3 ans d'expérience dans le développement web.
-              Je me spécialise dans la création d'applications modernes, performantes et user-friendly.
+              Ingénieur Test Automation actuellement en poste, avec des responsabilités incluant 
+              l'assurance de la fiabilité des solutions, la garantie de l'intégration et du 
+              déploiement continus (CI/CD) en production.
             </p>
             <p className="text-foreground/80 leading-relaxed">
-              Ma passion pour la technologie me pousse à rester constamment à jour avec les 
-              dernières tendances et meilleures pratiques du développement web.
+              Je développe des scripts d'automatisation en utilisant Python et la bibliothèque Selenium, 
+              avec un fort intérêt pour le DevOps et l'architecture logicielle.
             </p>
             
             {/* Skills */}
@@ -82,8 +84,28 @@ const About = () => {
           <div className="relative animate-fade-in-scale" style={{ animationDelay: "0.4s" }}>
             <div className="aspect-square rounded-2xl glass-card p-8 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
               <div className="w-full h-full rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <Code className="w-20 h-20 text-foreground/60" />
+                <Cpu className="w-20 h-20 text-foreground/60" />
               </div>
+            </div>
+            
+            {/* Social Links */}
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4">
+              <Button 
+                size="sm" 
+                variant="outline" 
+                className="glass-card hover:scale-110 transition-all duration-300"
+                onClick={() => window.open('https://github.com/Ashraf-Khabar/', '_blank')}
+              >
+                GitHub
+              </Button>
+              <Button 
+                size="sm" 
+                variant="outline" 
+                className="glass-card hover:scale-110 transition-all duration-300"
+                onClick={() => window.open('https://www.linkedin.com/in/achraf-khabar/', '_blank')}
+              >
+                LinkedIn
+              </Button>
             </div>
             
             {/* Floating elements around profile */}
