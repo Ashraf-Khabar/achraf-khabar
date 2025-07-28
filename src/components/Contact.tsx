@@ -26,23 +26,46 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simuler l'envoi du formulaire
-    setTimeout(() => {
+    try {
+      const response = await fetch(
+        'https://ebtufiefalvzuuqoaxhc.supabase.co/functions/v1/send-contact',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Message envoyé !",
+          description: "Je vous répondrai dans les plus brefs délais.",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        throw new Error(result.error);
+      }
+    } catch (error) {
       toast({
-        title: "Message envoyé !",
-        description: "Je vous répondrai dans les plus brefs délais.",
+        title: "Erreur",
+        description: "Impossible d'envoyer le message. Veuillez réessayer.",
+        variant: "destructive",
       });
-      setFormData({ name: "", email: "", subject: "", message: "" });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
     {
       icon: <Mail className="w-5 h-5" />,
       title: "Email",
-      value: "contact@monportfolio.fr",
-      link: "mailto:contact@monportfolio.fr"
+      value: "khabarachraf@gmail.com",
+      link: "mailto:khabarachraf@gmail.com"
     },
     {
       icon: <Phone className="w-5 h-5" />,
@@ -62,13 +85,13 @@ const Contact = () => {
     {
       icon: <Github className="w-5 h-5" />,
       name: "GitHub",
-      url: "https://github.com",
+      url: "https://github.com/Ashraf-Khabar/",
       color: "hover:text-foreground"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       name: "LinkedIn",
-      url: "https://linkedin.com",
+      url: "https://www.linkedin.com/in/achraf-khabar/",
       color: "hover:text-blue-400"
     },
     {
