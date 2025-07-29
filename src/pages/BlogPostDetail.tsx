@@ -150,7 +150,7 @@ const BlogPostDetail = () => {
 
               {/* Author Info */}
               <div className="mb-4 text-sm text-foreground/80">
-                <span>Rédigé par : <span className="font-medium text-foreground">Achraf KHABAR</span>, Ingénieur Software</span>
+                <span>Rédigé par : <span className="font-medium text-foreground">Achraf KHABAR</span>, Software Engineer</span>
               </div>
 
               {/* Meta Info */}
@@ -184,7 +184,7 @@ const BlogPostDetail = () => {
             {/* Article Content */}
             <Card className="glass-card p-8 mb-8">
               <div 
-                className="prose prose-gray dark:prose-invert max-w-none prose-headings:gradient-text prose-a:text-primary prose-code:text-primary prose-pre:bg-muted prose-pre:border"
+                className="blog-content max-w-none"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </Card>

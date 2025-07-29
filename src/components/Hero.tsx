@@ -43,7 +43,7 @@ const Hero = () => {
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
             <span className="block text-foreground mb-2">Salut, je suis</span>
             <span className="gradient-text animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
-              Ingénieur Software
+              Software Engineer
             </span>
           </h1>
 
