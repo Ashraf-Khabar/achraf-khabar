@@ -36,6 +36,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Store the contact submission in the database
     console.log("Storing in database...");
+    
+    // Extract the first IP address from x-forwarded-for header (can contain multiple IPs)
+    const forwardedFor = req.headers.get("x-forwarded-for");
+    const clientIp = forwardedFor ? forwardedFor.split(',')[0].trim() : "unknown";
+    console.log("Client IP extracted:", clientIp);
+    
     const { error: dbError } = await supabase
       .from('contact_submissions')
       .insert({
@@ -43,7 +49,7 @@ const handler = async (req: Request): Promise<Response> => {
         email,
         subject,
         message,
-        ip_address: req.headers.get("x-forwarded-for") || "unknown",
+        ip_address: clientIp,
         user_agent: req.headers.get("user-agent") || "unknown"
       });
 
