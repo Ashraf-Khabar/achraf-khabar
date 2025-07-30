@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Code, Sparkles } from "lucide-react";
 import DownloadCV from "./DownloadCV";
+import TypingEffect from "./TypingEffect";
 import heroImage from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
@@ -42,9 +43,14 @@ const Hero = () => {
 
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="block text-foreground mb-2">Salut, je suis</span>
-            <span className="gradient-text animate-fade-in-scale" style={{ animationDelay: "0.5s" }}>
-              Software Engineer
+            <span className="block text-foreground mb-2 animate-bounce-in">Salut, je suis</span>
+            <span className="gradient-text text-shadow">
+              <TypingEffect 
+                words={["DevOps Engineer", "Software Engineer", "QA Automation", "Cloud Architect"]}
+                speed={150}
+                deleteSpeed={75}
+                delayBetweenWords={2000}
+              />
             </span>
           </h1>
 

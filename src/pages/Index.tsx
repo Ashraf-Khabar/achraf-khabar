@@ -5,10 +5,14 @@ import Skills from "@/components/Skills";
 import ProjectsWithSearch from "@/components/ProjectsWithSearch";
 import Contact from "@/components/Contact";
 import BackToTop from "@/components/BackToTop";
+import ParticleBackground from "@/components/ParticleBackground";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <ScrollProgressBar />
+      <ParticleBackground />
       <Header />
       <Hero />
       <About />
