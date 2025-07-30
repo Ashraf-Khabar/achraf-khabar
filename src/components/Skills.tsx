@@ -54,7 +54,7 @@ const Skills = () => {
   };
 
   return (
-    <section className="py-20 bg-muted/30 relative overflow-hidden">
+    <section className="py-20 bg-background/90 backdrop-blur-sm relative overflow-hidden z-10">
       {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-primary/10 blur-3xl animate-float"></div>

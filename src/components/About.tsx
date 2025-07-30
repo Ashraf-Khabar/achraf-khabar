@@ -35,7 +35,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 px-6">
+    <section id="about" className="py-20 px-6 relative z-10 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto max-w-6xl">
         {/* Section Title */}
         <div className="text-center mb-16 animate-slide-up">

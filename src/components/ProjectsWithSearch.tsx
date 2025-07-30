@@ -178,7 +178,7 @@ const ProjectsWithSearch = () => {
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
 
   return (
-    <section id="projects" className="py-20 bg-muted/30 relative z-10">
+    <section id="projects" className="py-20 bg-background/90 backdrop-blur-sm relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl font-bold gradient-text mb-4 text-shadow">
