@@ -36,7 +36,7 @@ const Projects = () => {
       description: "ORM pour bases de données relationnelles (Oracle et MySQL) avec API Flask. Fournit une manipulation simple des bases de données et un mapping simplifié.",
       technologies: ["Python", "Flask", "Oracle", "MySQL", "ORM"],
       githubUrl: "https://github.com/Ashraf-Khabar/FLASKOSQL",
-      liveUrl: "https://achrafkhabar.com/flaskoSQL",
+      liveUrl: null,
       stars: 1,
       forks: 1,
       featured: true,
@@ -45,9 +45,9 @@ const Projects = () => {
     },
     {
       id: "licence-plate-recognition",
-      title: "Vehicle License Plate Recognition",
+      title: "Licence Plate Recognition",
       description: "Système radar innovant pour la détection et reconnaissance des plaques d'immatriculation. Améliore la sécurité routière et facilite l'identification des véhicules.",
-      technologies: ["Python", "OpenCV", "Machine Learning", "Computer Vision", "OCR"],
+      technologies: ["Python", "Flask", "Machine Learning", "AI", "Computer Vision"],
       githubUrl: "https://github.com/Ashraf-Khabar/Licence-plate-recognition",
       liveUrl: null,
       stars: 2,
@@ -70,23 +70,10 @@ const Projects = () => {
       image: smartSpenderImage
     },
     {
-      id: "student-grade-manager",
-      title: "Student Grade Manager",
-      description: "Application web complète pour la gestion des notes étudiantes par modules, matières et enseignants. Construite avec Laravel et Oracle DB.",
-      technologies: ["Laravel", "PHP", "Oracle DB", "Bootstrap", "JavaScript"],
-      githubUrl: "https://github.com/Ashraf-Khabar/StudentGradeManager",
-      liveUrl: null,
-      stars: 1,
-      forks: 0,
-      featured: false,
-      category: "Web Application",
-      image: studentGradeImage
-    },
-    {
       id: "data-science-docs",
       title: "Data Science Documentation Hub",
       description: "Collection complète de documents, CV et livres sur la science des données. Couvre ML, data mining, warehousing, et business intelligence.",
-      technologies: ["Data Science", "Machine Learning", "Python", "R", "Documentation"],
+      technologies: ["Data Science", "Machine Learning", "Jupyter Notebook", "Documentation"],
       githubUrl: "https://github.com/Ashraf-Khabar/Data-Science-Docs",
       liveUrl: null,
       stars: 2,
@@ -94,6 +81,19 @@ const Projects = () => {
       featured: false,
       category: "Documentation / Education",
       image: dataScienceImage
+    },
+    {
+      id: "portfolio",
+      title: "Portfolio Web",
+      description: "Mon site web personnel construit avec React.js pour présenter tous mes projets et documents. Interface moderne et responsive pour simplifier l'accès à mes réalisations.",
+      technologies: ["React", "JavaScript", "HTML", "CSS", "Git"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Portfolio",
+      liveUrl: "https://achrafkhabar.com",
+      stars: 0,
+      forks: 0,
+      featured: false,
+      category: "Web Development",
+      image: testAutomationImage // Using existing image temporarily
     }
   ];
 

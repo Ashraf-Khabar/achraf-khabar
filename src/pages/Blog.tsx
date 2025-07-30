@@ -148,7 +148,7 @@ const Blog = () => {
                       variant="ghost" 
                       size="sm"
                       className="w-full justify-between group-hover:bg-primary/10 transition-colors duration-300"
-                      onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                      onClick={() => window.location.href = `/blog/${post.slug}`}
                     >
                       Lire l'article
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
