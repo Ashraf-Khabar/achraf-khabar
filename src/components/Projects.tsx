@@ -1,8 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Github, Star, GitFork, Eye } from "lucide-react";
+import { ExternalLink, Github, Star, GitFork, Eye, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import flaskosqlImage from "@/assets/flaskosql-project.jpg";
 import licencePlateImage from "@/assets/licence-plate-recognition-project.jpg";
 import studentGradeImage from "@/assets/student-grade-manager-project.jpg";
@@ -12,6 +13,9 @@ import smartSpenderImage from "@/assets/smartspender-project.jpg";
 
 const Projects = () => {
   const navigate = useNavigate();
+  const [visibleProjects, setVisibleProjects] = useState(4);
+  const PROJECTS_PER_PAGE = 4;
+  
   const projects = [
     {
       id: "test-automation-lab",
@@ -108,7 +112,7 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
-          {projects.map((project, index) => (
+          {projects.slice(0, visibleProjects).map((project, index) => (
             <Card 
               key={project.title}
               className={`glass-card overflow-hidden hover:scale-105 transition-all duration-500 group ${
@@ -229,6 +233,20 @@ const Projects = () => {
             </Card>
           ))}
         </div>
+
+        {/* Load More Button */}
+        {visibleProjects < projects.length && (
+          <div className="text-center mt-12">
+            <Button 
+              variant="outline" 
+              className="glass-card group"
+              onClick={() => setVisibleProjects(prev => Math.min(prev + PROJECTS_PER_PAGE, projects.length))}
+            >
+              <ChevronDown className="w-4 h-4 mr-2 group-hover:animate-bounce" />
+              Voir plus de projets ({projects.length - visibleProjects} restants)
+            </Button>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="text-center mt-16 animate-slide-up" style={{ animationDelay: "0.8s" }}>
