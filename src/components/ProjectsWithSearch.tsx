@@ -255,11 +255,12 @@ const ProjectsWithSearch = () => {
               <CardContent>
                 {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
+                  {project.technologies.map((tech, techIndex) => (
                     <Badge 
                       key={tech} 
                       variant="secondary" 
-                      className="text-xs cursor-pointer hover:bg-primary/20 transition-colors"
+                      className="text-xs cursor-pointer hover:bg-primary/20 hover:scale-110 transition-all duration-300 animate-bounce-in shimmer"
+                      style={{ animationDelay: `${(index * 0.1) + (techIndex * 0.05)}s` }}
                       onClick={() => setTechFilter(tech)}
                     >
                       {tech}
@@ -271,10 +272,10 @@ const ProjectsWithSearch = () => {
                 <div className="flex gap-2">
                   <Button 
                     size="sm" 
-                    className="flex-1"
+                    className="flex-1 hover-glow group"
                     onClick={() => navigate(`/project/${project.id}`)}
                   >
-                    <Eye className="w-4 h-4 mr-2" />
+                    <Eye className="w-4 h-4 mr-2 group-hover:animate-wiggle" />
                     Détails
                   </Button>
                   <Button 

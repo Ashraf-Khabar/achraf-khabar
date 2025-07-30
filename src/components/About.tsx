@@ -39,7 +39,7 @@ const About = () => {
       <div className="container mx-auto max-w-6xl">
         {/* Section Title */}
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-shadow">
             À propos de moi
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
