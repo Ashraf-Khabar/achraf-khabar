@@ -5,7 +5,7 @@ import Skills from "@/components/Skills";
 import ProjectsWithSearch from "@/components/ProjectsWithSearch";
 import Contact from "@/components/Contact";
 import BackToTop from "@/components/BackToTop";
-import ParticleBackground from "@/components/ParticleBackground";
+import NetworkBackground from "@/components/NetworkBackground";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 
 const Index = () => {
@@ -21,7 +21,7 @@ const Index = () => {
         <Contact />
         <BackToTop />
       </div>
-      <ParticleBackground />
+      <NetworkBackground />
     </div>
   );
 };
