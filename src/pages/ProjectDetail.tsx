@@ -11,11 +11,11 @@ const ProjectDetail = () => {
   const projects = {
     "flaskosql": {
       title: "FLASKOSQL",
-      description: "ORM pour bases de données relationnelles (Oracle et MySQL) avec API Flask. Fournit une manipulation simple des bases de données et un mapping simplifié pour faciliter l'interaction avec les bases de données relationnelles.",
+      description: "ORM pour bases de données relationnelles (Oracle et MySQL) avec API Flask. Fournit une manipulation simple des bases de données et un mapping simplifié.",
       longDescription: "FLASKOSQL est un ORM complet qui simplifie l'interaction avec les bases de données Oracle et MySQL dans des applications Flask. Il offre des fonctionnalités avancées de mapping objet-relationnel et une API intuitive pour les opérations CRUD.",
       technologies: ["Python", "Flask", "Oracle", "MySQL", "ORM"],
       githubUrl: "https://github.com/Ashraf-Khabar/FLASKOSQL",
-      liveUrl: "https://achrafkhabar.com/flaskoSQL",
+      liveUrl: null,
       stars: 1,
       forks: 1,
       commits: 68,
@@ -31,10 +31,10 @@ const ProjectDetail = () => {
       category: "Backend / Database"
     },
     "licence-plate-recognition": {
-      title: "Vehicle License Plate Recognition Radar",
-      description: "Système radar innovant pour la détection et reconnaissance des plaques d'immatriculation de véhicules. Améliore la sécurité routière et facilite l'identification des véhicules dans le trafic.",
+      title: "Licence Plate Recognition",
+      description: "Système radar innovant pour la détection et reconnaissance des plaques d'immatriculation. Améliore la sécurité routière et facilite l'identification des véhicules.",
       longDescription: "Projet technologique ambitieux qui combine vision par ordinateur et intelligence artificielle pour créer un système de radar capable de détecter et reconnaître automatiquement les plaques d'immatriculation des véhicules en temps réel.",
-      technologies: ["Python", "OpenCV", "Machine Learning", "Computer Vision", "OCR"],
+      technologies: ["Python", "Flask", "Machine Learning", "AI", "Computer Vision"],
       githubUrl: "https://github.com/Ashraf-Khabar/Licence-plate-recognition",
       liveUrl: null,
       stars: 2,
@@ -51,7 +51,7 @@ const ProjectDetail = () => {
       ],
       category: "Computer Vision / AI"
     },
-    "student-grade-manager": {
+    "studentgrademanager": {
       title: "Student Grade Manager",
       description: "Application web complète pour la gestion des notes étudiantes par modules, matières et enseignants. Construite avec Laravel et Oracle DB.",
       longDescription: "Système complet de gestion académique permettant aux enseignants de visualiser les notes de leurs étudiants, aux étudiants de consulter leurs résultats organisés par matières, et aux administrateurs de gérer l'application.",
@@ -74,13 +74,13 @@ const ProjectDetail = () => {
     },
     "data-science-docs": {
       title: "Data Science Documentation Hub",
-      description: "Collection complète de documents, CV et livres sur la science des données. Couvre l'apprentissage automatique, l'exploration de données, l'entreposage de données, et l'intelligence d'affaires.",
+      description: "Collection complète de documents, CV et livres sur la science des données. Couvre ML, data mining, warehousing, et business intelligence.",
       longDescription: "Repository exhaustif rassemblant une vaste collection de ressources éducatives sur la science des données, incluant des guides pratiques, des documentations techniques, et des références académiques.",
       technologies: ["Data Science", "Machine Learning", "Python", "R", "Documentation"],
       githubUrl: "https://github.com/Ashraf-Khabar/Data-Science-Docs",
       liveUrl: null,
-      stars: 3,
-      forks: 2,
+      stars: 2,
+      forks: 1,
       commits: 28,
       lastUpdate: "2024",
       features: [
@@ -92,6 +92,132 @@ const ProjectDetail = () => {
         "Ressources académiques et professionnelles"
       ],
       category: "Documentation / Education"
+    },
+    "test-automation-lab": {
+      title: "Test Automation Lab",
+      description: "Laboratoire d'automatisation des tests utilisant Selenium et autres frameworks de test. Fournit une solution complète pour l'automatisation des tests web et API.",
+      longDescription: "Projet complet dédié à l'automatisation des tests avec des frameworks modernes. Inclut des exemples pratiques, des templates et des bonnes pratiques pour l'automatisation des tests web et API.",
+      technologies: ["HTML", "Selenium", "JavaScript", "Test Automation", "QA"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Test-Automation-Lab",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      commits: 25,
+      lastUpdate: "2024",
+      features: [
+        "Framework Selenium intégré",
+        "Tests automatisés web et API",
+        "Rapports de tests détaillés",
+        "Templates réutilisables",
+        "Bonnes pratiques QA",
+        "Configuration CI/CD"
+      ],
+      category: "Test Automation / QA"
+    },
+    "smartspender": {
+      title: "SmartSpender",
+      description: "Application web de gestion financière intelligente pour aider les utilisateurs à gérer et organiser leur argent. Inclut des fonctionnalités de suivi de budget et de prévention des problèmes financiers.",
+      longDescription: "Application complète de gestion financière personnelle avec des fonctionnalités avancées de suivi budgétaire, analyse des dépenses et recommandations intelligentes pour optimiser les finances personnelles.",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "JavaScript"],
+      githubUrl: "https://github.com/Ashraf-Khabar/SmartSpender",
+      liveUrl: null,
+      stars: 0,
+      forks: 1,
+      commits: 42,
+      lastUpdate: "2024",
+      features: [
+        "Suivi des dépenses en temps réel",
+        "Budgets personnalisables",
+        "Analyses et rapports financiers",
+        "Alertes de dépassement",
+        "Catégorisation automatique",
+        "Interface utilisateur moderne"
+      ],
+      category: "Web Application / FinTech"
+    },
+    "portfolio": {
+      title: "Portfolio Web",
+      description: "Mon site web personnel construit avec React.js pour présenter tous mes projets et documents. Interface moderne et responsive pour simplifier l'accès à mes réalisations.",
+      longDescription: "Portfolio personnel développé avec React et les dernières technologies web. Présente une interface moderne et responsive pour mettre en valeur mes projets, compétences et réalisations professionnelles.",
+      technologies: ["React", "JavaScript", "HTML", "CSS", "Git"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Portfolio",
+      liveUrl: "https://achrafkhabar.com",
+      stars: 0,
+      forks: 0,
+      commits: 15,
+      lastUpdate: "2024",
+      features: [
+        "Design responsive moderne",
+        "Présentation interactive des projets",
+        "Section blog intégrée",
+        "Contact et CV téléchargeable",
+        "Performance optimisée",
+        "SEO friendly"
+      ],
+      category: "Web Development"
+    },
+    "blogosss": {
+      title: "Blogosss",
+      description: "Plateforme de blog moderne développée pour la création et gestion de contenu. Interface utilisateur intuitive avec système de commentaires et gestion d'articles.",
+      longDescription: "Application de blogging complète avec un système de gestion de contenu moderne, permettant la création, édition et publication d'articles avec une interface utilisateur soignée.",
+      technologies: ["Web Development", "Content Management", "Blog"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Blogosss",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      commits: 20,
+      lastUpdate: "2024",
+      features: [
+        "Éditeur de contenu riche",
+        "Système de commentaires",
+        "Gestion des catégories",
+        "Interface d'administration",
+        "Responsive design",
+        "SEO optimisé"
+      ],
+      category: "Web Development / CMS"
+    },
+    "funcplot-plottingfunctionsmadeeasy": {
+      title: "FuncPlot - Plotting Functions Made Easy",
+      description: "Application conviviale construite avec Kivy et KivyMD qui permet de tracer et visualiser facilement des fonctions mathématiques sur desktop ou mobile.",
+      longDescription: "Application mobile et desktop pour la visualisation de fonctions mathématiques avec une interface intuitive. Supporte de multiples fonctions et aide à explorer des concepts mathématiques complexes.",
+      technologies: ["Python", "Kivy", "KivyMD", "Mathematics", "Visualization"],
+      githubUrl: "https://github.com/Ashraf-Khabar/FuncPlot-PlottingFunctionsMadeEasy",
+      liveUrl: null,
+      stars: 1,
+      forks: 0,
+      commits: 30,
+      lastUpdate: "2024",
+      features: [
+        "Tracé de fonctions mathématiques",
+        "Interface utilisateur intuitive",
+        "Support mobile et desktop",
+        "Zoom et navigation interactive",
+        "Export des graphiques",
+        "Fonctions multiples simultanées"
+      ],
+      category: "Mobile / Desktop Application"
+    },
+    "ensat_internship": {
+      title: "ENSAT Internship",
+      description: "Projet développé dans le cadre d'un stage à l'ENSAT. Comprend des travaux de recherche et développement dans le domaine technique.",
+      longDescription: "Projet académique et professionnel réalisé durant un stage à l'École Nationale des Sciences Appliquées de Tanger (ENSAT), incluant des recherches et développements techniques.",
+      technologies: ["Research", "Development", "Academic"],
+      githubUrl: "https://github.com/Ashraf-Khabar/ENSAT_Internship",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      commits: 18,
+      lastUpdate: "2024",
+      features: [
+        "Recherche académique",
+        "Développement technique",
+        "Documentation complète",
+        "Méthodologie scientifique",
+        "Analyse de données",
+        "Rapport de stage"
+      ],
+      category: "Academic / Research"
     }
   };
 

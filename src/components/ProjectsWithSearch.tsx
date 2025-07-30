@@ -20,19 +20,6 @@ const ProjectsWithSearch = () => {
 
   const projects = [
     {
-      id: "test-automation-lab",
-      title: "Test Automation Lab",
-      description: "Laboratoire d'automatisation des tests utilisant Selenium et autres frameworks de test. Fournit une solution complète pour l'automatisation des tests web et API.",
-      technologies: ["HTML", "Selenium", "JavaScript", "Test Automation", "QA"],
-      githubUrl: "https://github.com/Ashraf-Khabar/Test-Automation-Lab",
-      liveUrl: null,
-      stars: 0,
-      forks: 0,
-      featured: true,
-      category: "Test Automation / QA",
-      image: testAutomationImage
-    },
-    {
       id: "flaskosql",
       title: "FLASKOSQL",
       description: "ORM pour bases de données relationnelles (Oracle et MySQL) avec API Flask. Fournit une manipulation simple des bases de données et un mapping simplifié.",
@@ -59,6 +46,32 @@ const ProjectsWithSearch = () => {
       image: licencePlateImage
     },
     {
+      id: "studentgrademanager",
+      title: "Student Grade Manager",
+      description: "Application web complète pour la gestion des notes étudiantes par modules, matières et enseignants. Construite avec Laravel et Oracle DB.",
+      technologies: ["Laravel", "PHP", "Oracle DB", "Bootstrap", "JavaScript"],
+      githubUrl: "https://github.com/Ashraf-Khabar/StudentGradeManager",
+      liveUrl: null,
+      stars: 1,
+      forks: 0,
+      featured: true,
+      category: "Web Application",
+      image: studentGradeImage
+    },
+    {
+      id: "test-automation-lab",
+      title: "Test Automation Lab",
+      description: "Laboratoire d'automatisation des tests utilisant Selenium et autres frameworks de test. Fournit une solution complète pour l'automatisation des tests web et API.",
+      technologies: ["HTML", "Selenium", "JavaScript", "Test Automation", "QA"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Test-Automation-Lab",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      featured: false,
+      category: "Test Automation / QA",
+      image: testAutomationImage
+    },
+    {
       id: "smartspender",
       title: "SmartSpender",
       description: "Application web de gestion financière intelligente pour aider les utilisateurs à gérer et organiser leur argent. Inclut des fonctionnalités de suivi de budget et de prévention des problèmes financiers.",
@@ -75,7 +88,7 @@ const ProjectsWithSearch = () => {
       id: "data-science-docs",
       title: "Data Science Documentation Hub",
       description: "Collection complète de documents, CV et livres sur la science des données. Couvre ML, data mining, warehousing, et business intelligence.",
-      technologies: ["Data Science", "Machine Learning", "Jupyter Notebook", "Documentation"],
+      technologies: ["Data Science", "Machine Learning", "Python", "R", "Documentation"],
       githubUrl: "https://github.com/Ashraf-Khabar/Data-Science-Docs",
       liveUrl: null,
       stars: 2,
@@ -95,6 +108,45 @@ const ProjectsWithSearch = () => {
       forks: 0,
       featured: false,
       category: "Web Development",
+      image: testAutomationImage
+    },
+    {
+      id: "blogosss",
+      title: "Blogosss",
+      description: "Plateforme de blog moderne développée pour la création et gestion de contenu. Interface utilisateur intuitive avec système de commentaires et gestion d'articles.",
+      technologies: ["Web Development", "Content Management", "Blog"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Blogosss",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      featured: false,
+      category: "Web Development / CMS",
+      image: testAutomationImage
+    },
+    {
+      id: "funcplot-plottingfunctionsmadeeasy",
+      title: "FuncPlot - Plotting Functions Made Easy",
+      description: "Application conviviale construite avec Kivy et KivyMD qui permet de tracer et visualiser facilement des fonctions mathématiques sur desktop ou mobile.",
+      technologies: ["Python", "Kivy", "KivyMD", "Mathematics", "Visualization"],
+      githubUrl: "https://github.com/Ashraf-Khabar/FuncPlot-PlottingFunctionsMadeEasy",
+      liveUrl: null,
+      stars: 1,
+      forks: 0,
+      featured: false,
+      category: "Mobile / Desktop Application",
+      image: testAutomationImage
+    },
+    {
+      id: "ensat_internship",
+      title: "ENSAT Internship",
+      description: "Projet développé dans le cadre d'un stage à l'ENSAT. Comprend des travaux de recherche et développement dans le domaine technique.",
+      technologies: ["Research", "Development", "Academic"],
+      githubUrl: "https://github.com/Ashraf-Khabar/ENSAT_Internship",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      featured: false,
+      category: "Academic / Research",
       image: testAutomationImage
     }
   ];
