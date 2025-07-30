@@ -88,14 +88,29 @@ const Hero = () => {
 
           {/* Social Links */}
           <div className="flex gap-4 justify-center mt-8 animate-slide-up" style={{ animationDelay: "2s" }}>
-            <Button variant="ghost" size="sm" className="glass-card hover:scale-110 transition-transform duration-300">
-              <Github className="w-5 h-5" />
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="glass-card hover:scale-110 hover-glow transition-all duration-300 group"
+              onClick={() => window.open('https://github.com/Ashraf-Khabar/', '_blank')}
+            >
+              <Github className="w-5 h-5 group-hover:animate-heartbeat" />
             </Button>
-            <Button variant="ghost" size="sm" className="glass-card hover:scale-110 transition-transform duration-300">
-              <Linkedin className="w-5 h-5" />
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="glass-card hover:scale-110 hover-glow transition-all duration-300 group"
+              onClick={() => window.open('https://www.linkedin.com/in/achraf-khabar/', '_blank')}
+            >
+              <Linkedin className="w-5 h-5 group-hover:animate-rainbow" />
             </Button>
-            <Button variant="ghost" size="sm" className="glass-card hover:scale-110 transition-transform duration-300">
-              <Mail className="w-5 h-5" />
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="glass-card hover:scale-110 hover-glow transition-all duration-300 group"
+              onClick={() => window.open('mailto:contact@achrafkhabar.com', '_blank')}
+            >
+              <Mail className="w-5 h-5 group-hover:animate-wiggle" />
             </Button>
           </div>
         </div>
