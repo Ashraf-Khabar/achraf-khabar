@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Code, Sparkles } from "lucide-react";
+import DownloadCV from "./DownloadCV";
 import heroImage from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
@@ -72,6 +73,11 @@ const Hero = () => {
               <Mail className="w-5 h-5 mr-2" />
               Me contacter
             </Button>
+          </div>
+
+          {/* Download CV Section */}
+          <div className="mt-8 animate-slide-up" style={{ animationDelay: "1.8s" }}>
+            <DownloadCV />
           </div>
 
           {/* Social Links */}
