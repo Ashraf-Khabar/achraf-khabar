@@ -35,9 +35,9 @@ const Hero = () => {
       <div className="relative z-20 text-center px-6 max-w-5xl mx-auto">
         <div className="space-y-8 animate-slide-up">
           {/* Greeting */}
-          <div className="inline-flex items-center px-4 py-2 rounded-full glass-card mb-6">
-            <Sparkles className="w-4 h-4 text-accent mr-2 animate-spin" style={{ animationDuration: "3s" }} />
-            <span className="text-sm text-foreground/80">Bienvenue sur mon portfolio</span>
+          <div className="inline-flex items-center px-2 sm:px-4 py-1.5 sm:py-2 rounded-full glass-card mb-4 sm:mb-6">
+            <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-accent mr-1.5 sm:mr-2 animate-spin" style={{ animationDuration: "3s" }} />
+            <span className="text-xs sm:text-sm text-foreground/80">Bienvenue sur mon portfolio</span>
           </div>
 
           {/* Main Title */}
