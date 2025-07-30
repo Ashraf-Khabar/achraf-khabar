@@ -5,8 +5,10 @@ import { Code, Settings, TestTube, Database, Cloud, Cpu } from "lucide-react";
 
 const About = () => {
   const skills = [
-    "Python", "Selenium", "Docker", "CI/CD", "Jenkins", 
-    "Oracle DB", "MySQL", "Laravel", "PHP", "Machine Learning"
+    "Python", "Selenium", "Docker", "Kubernetes", "Terraform", "Ansible",
+    "Jenkins", "GitHub Actions", "GitLab CI", "CI/CD", "AWS", "Azure", 
+    "Oracle DB", "MySQL", "Laravel", "PHP", "Machine Learning", 
+    "Nexus Sonatype", "SonarQube", "Prometheus", "Grafana", "ELK Stack"
   ];
 
   const services = [
