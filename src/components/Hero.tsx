@@ -11,81 +11,120 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Network Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `
-            linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px),
-            linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
-          backgroundPosition: '0 0, 0 0, 0 0, 0 0'
-        }}>
-          {/* Network nodes */}
-          <div className="absolute inset-0">
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-2 h-2 bg-primary/40 rounded-full animate-pulse"
+      {/* Network Grid Background */}
+      <div className="absolute inset-0 z-0" style={{
+        background: `
+          linear-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(168, 85, 247, 0.15) 1px, transparent 1px),
+          linear-gradient(rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(14, 165, 233, 0.1) 1px, transparent 1px),
+          radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.2) 2px, transparent 2px),
+          radial-gradient(circle at 75% 75%, rgba(14, 165, 233, 0.2) 2px, transparent 2px),
+          linear-gradient(135deg, hsl(240 15% 8%), hsl(240 15% 12%))
+        `,
+        backgroundSize: '60px 60px, 60px 60px, 20px 20px, 20px 20px, 120px 120px, 120px 120px, 100% 100%'
+      }}>
+        {/* Network Nodes */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute"
+              style={{
+                left: `${5 + (i % 5) * 22}%`,
+                top: `${15 + Math.floor(i / 5) * 20}%`,
+              }}
+            >
+              <div 
+                className="w-3 h-3 bg-primary/60 rounded-full animate-pulse border border-primary/80"
                 style={{
-                  left: `${10 + (i % 4) * 25}%`,
-                  top: `${20 + Math.floor(i / 4) * 30}%`,
-                  animationDelay: `${i * 0.5}s`,
-                  animationDuration: '3s'
+                  animationDelay: `${i * 0.3}s`,
+                  animationDuration: '4s',
+                  boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)'
                 }}
               />
-            ))}
-          </div>
+              {/* Connection lines from each node */}
+              {i < 15 && (
+                <div 
+                  className="absolute top-1/2 left-full w-20 h-px opacity-30 animate-pulse"
+                  style={{
+                    background: 'linear-gradient(90deg, rgba(168, 85, 247, 0.8), transparent)',
+                    animationDelay: `${i * 0.5}s`,
+                    animationDuration: '3s'
+                  }}
+                />
+              )}
+              {i < 15 && (
+                <div 
+                  className="absolute top-full left-1/2 w-px h-16 opacity-30 animate-pulse"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(14, 165, 233, 0.8), transparent)',
+                    animationDelay: `${i * 0.7}s`,
+                    animationDuration: '3.5s'
+                  }}
+                />
+              )}
+            </div>
+          ))}
         </div>
-        
-        {/* Hero Image with Network Overlay */}
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed"
-          }}
-        >
-          <div className="absolute inset-0 bg-background/70 backdrop-blur-sm"></div>
-          {/* Network overlay on hero image */}
-          <div className="absolute inset-0 opacity-30" style={{
-            backgroundImage: `
-              radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.1) 2px, transparent 2px),
-              radial-gradient(circle at 75% 75%, rgba(14, 165, 233, 0.1) 2px, transparent 2px),
-              linear-gradient(45deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px, 50px 50px, 25px 25px'
-          }}></div>
+
+        {/* Animated Data Packets */}
+        <div className="absolute inset-0">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-2 h-2 bg-accent rounded-full animate-ping"
+              style={{
+                left: `${10 + i * 12}%`,
+                top: `${20 + (i % 3) * 25}%`,
+                animationDelay: `${i * 0.8}s`,
+                animationDuration: '2s'
+              }}
+            />
+          ))}
         </div>
+
+        {/* Network Circuit Pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-20">
+          <defs>
+            <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+              <path d="M 0 50 L 25 50 L 35 40 L 65 40 L 75 50 L 100 50" stroke="rgba(168, 85, 247, 0.4)" strokeWidth="2" fill="none"/>
+              <path d="M 50 0 L 50 25 L 60 35 L 60 65 L 50 75 L 50 100" stroke="rgba(14, 165, 233, 0.4)" strokeWidth="2" fill="none"/>
+              <circle cx="35" cy="40" r="3" fill="rgba(168, 85, 247, 0.6)"/>
+              <circle cx="65" cy="40" r="3" fill="rgba(14, 165, 233, 0.6)"/>
+              <circle cx="60" cy="35" r="3" fill="rgba(168, 85, 247, 0.6)"/>
+              <circle cx="60" cy="65" r="3" fill="rgba(14, 165, 233, 0.6)"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#circuit)"/>
+        </svg>
+
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background/40 via-transparent to-background/60"></div>
       </div>
 
       {/* Animated Network Lines */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-primary/20 blur-xl animate-float"></div>
-        <div className="absolute top-40 right-20 w-32 h-32 rounded-full bg-accent/20 blur-xl animate-float" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute bottom-40 left-20 w-16 h-16 rounded-full bg-primary/30 blur-lg animate-float" style={{ animationDelay: "2s" }}></div>
-        <div className="absolute bottom-60 right-10 w-24 h-24 rounded-full bg-accent/25 blur-xl animate-float" style={{ animationDelay: "0.5s" }}></div>
-        
+      <div className="absolute inset-0 z-10">        
         {/* Network connection lines */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+        <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
           <defs>
             <linearGradient id="networkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(168, 85, 247, 0.3)" />
-              <stop offset="100%" stopColor="rgba(14, 165, 233, 0.3)" />
+              <stop offset="0%" stopColor="rgba(168, 85, 247, 0.8)" />
+              <stop offset="50%" stopColor="rgba(14, 165, 233, 0.8)" />
+              <stop offset="100%" stopColor="rgba(168, 85, 247, 0.8)" />
             </linearGradient>
           </defs>
-          <line x1="10%" y1="20%" x2="90%" y2="80%" stroke="url(#networkGradient)" strokeWidth="1" className="animate-pulse" strokeDasharray="5,5">
+          <line x1="10%" y1="20%" x2="90%" y2="80%" stroke="url(#networkGradient)" strokeWidth="2" strokeDasharray="10,5">
+            <animate attributeName="stroke-dashoffset" values="0;15" dur="3s" repeatCount="indefinite"/>
+          </line>
+          <line x1="90%" y1="20%" x2="10%" y2="80%" stroke="url(#networkGradient)" strokeWidth="2" strokeDasharray="10,5">
+            <animate attributeName="stroke-dashoffset" values="0;15" dur="4s" repeatCount="indefinite"/>
+          </line>
+          <line x1="20%" y1="10%" x2="80%" y2="90%" stroke="url(#networkGradient)" strokeWidth="1" strokeDasharray="5,5">
             <animate attributeName="stroke-dashoffset" values="0;10" dur="2s" repeatCount="indefinite"/>
           </line>
-          <line x1="90%" y1="20%" x2="10%" y2="80%" stroke="url(#networkGradient)" strokeWidth="1" className="animate-pulse" strokeDasharray="5,5">
+          <line x1="80%" y1="10%" x2="20%" y2="90%" stroke="url(#networkGradient)" strokeWidth="1" strokeDasharray="5,5">
             <animate attributeName="stroke-dashoffset" values="0;10" dur="2.5s" repeatCount="indefinite"/>
-          </line>
-          <line x1="50%" y1="10%" x2="50%" y2="90%" stroke="url(#networkGradient)" strokeWidth="1" className="animate-pulse" strokeDasharray="5,5">
-            <animate attributeName="stroke-dashoffset" values="0;10" dur="3s" repeatCount="indefinite"/>
           </line>
         </svg>
       </div>
