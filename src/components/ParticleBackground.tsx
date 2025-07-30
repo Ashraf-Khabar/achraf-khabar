@@ -53,8 +53,7 @@ const ParticleBackground = () => {
 
     // Animation loop
     const animate = () => {
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particlesRef.current.forEach((particle, index) => {
         // Update position
@@ -70,7 +69,9 @@ const ParticleBackground = () => {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `${particle.color}${Math.floor(particle.opacity * 255).toString(16).padStart(2, '0')}`;
+        ctx.fillStyle = particle.color;
+        ctx.shadowColor = particle.color;
+        ctx.shadowBlur = 10;
         ctx.fill();
 
         // Draw connections
@@ -107,8 +108,12 @@ const ParticleBackground = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none opacity-60"
-      style={{ zIndex: 0 }}
+      className="fixed inset-0 pointer-events-none"
+      style={{ 
+        zIndex: 1,
+        background: 'transparent',
+        opacity: 0.8
+      }}
     />
   );
 };

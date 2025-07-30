@@ -12,14 +12,16 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <ScrollProgressBar />
+      <div className="relative z-20">
+        <Header />
+        <Hero />
+        <About />
+        <Skills />
+        <ProjectsWithSearch />
+        <Contact />
+        <BackToTop />
+      </div>
       <ParticleBackground />
-      <Header />
-      <Hero />
-      <About />
-      <Skills />
-      <ProjectsWithSearch />
-      <Contact />
-      <BackToTop />
     </div>
   );
 };
