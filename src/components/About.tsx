@@ -80,12 +80,14 @@ const About = () => {
             </div>
           </div>
 
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <div className="relative animate-fade-in-scale" style={{ animationDelay: "0.4s" }}>
-            <div className="aspect-square rounded-2xl glass-card p-8 flex items-center justify-center bg-gradient-to-br from-primary/10 to-accent/10">
-              <div className="w-full h-full rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <Cpu className="w-20 h-20 text-foreground/60" />
-              </div>
+            <div className="aspect-square rounded-2xl glass-card p-2 bg-gradient-to-br from-primary/10 to-accent/10">
+              <img 
+                src="/lovable-uploads/5e06a28a-8b08-435d-a468-84c80b091cea.png" 
+                alt="Ashraf Khabar - DevOps/SRE & QA Automation Engineer"
+                className="w-full h-full object-cover rounded-xl"
+              />
             </div>
             
             {/* Social Links */}
