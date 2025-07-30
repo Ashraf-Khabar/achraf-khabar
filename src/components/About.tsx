@@ -72,7 +72,7 @@ const About = () => {
                   <Badge 
                     key={skill} 
                     variant="secondary" 
-                    className="glass-card hover:scale-105 transition-transform duration-300"
+                    className="glass-card hover:scale-105 transition-transform duration-300 animate-bounce-in"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {skill}
@@ -128,7 +128,7 @@ const About = () => {
             {services.map((service, index) => (
               <Card 
                 key={service.title}
-                className="glass-card p-6 text-center hover:scale-105 transition-all duration-300 group"
+                className="glass-card p-6 text-center hover:scale-105 transition-all duration-300 group animate-bounce-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
