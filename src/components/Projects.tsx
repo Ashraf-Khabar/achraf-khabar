@@ -3,6 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Star, GitFork, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import flaskosqlImage from "@/assets/flaskosql-project.jpg";
+import licencePlateImage from "@/assets/licence-plate-recognition-project.jpg";
+import studentGradeImage from "@/assets/student-grade-manager-project.jpg";
+import dataScienceImage from "@/assets/data-science-docs-project.jpg";
 
 const Projects = () => {
   const navigate = useNavigate();
@@ -17,7 +21,8 @@ const Projects = () => {
       stars: 1,
       forks: 1,
       featured: true,
-      category: "Backend / Database"
+      category: "Backend / Database",
+      image: flaskosqlImage
     },
     {
       id: "licence-plate-recognition",
@@ -29,7 +34,8 @@ const Projects = () => {
       stars: 2,
       forks: 1,
       featured: true,
-      category: "Computer Vision / AI"
+      category: "Computer Vision / AI",
+      image: licencePlateImage
     },
     {
       id: "student-grade-manager",
@@ -41,7 +47,8 @@ const Projects = () => {
       stars: 1,
       forks: 0,
       featured: false,
-      category: "Web Application"
+      category: "Web Application",
+      image: studentGradeImage
     },
     {
       id: "data-science-docs",
@@ -53,7 +60,8 @@ const Projects = () => {
       stars: 3,
       forks: 2,
       featured: false,
-      category: "Documentation / Education"
+      category: "Documentation / Education",
+      image: dataScienceImage
     }
   ];
 
@@ -71,7 +79,7 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <Card 
               key={project.title}
@@ -82,38 +90,23 @@ const Projects = () => {
             >
               {/* Project Image */}
               <div className="relative aspect-video bg-gradient-to-br from-primary/20 to-accent/20 overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center relative">
-                  {/* Code Pattern Background */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="grid grid-cols-8 h-full">
-                      {[...Array(32)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="border-r border-b border-white/10 animate-pulse"
-                          style={{ animationDelay: `${i * 0.1}s` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent"></div>
                   
-                  {/* Project Icon */}
-                  <div className="relative z-10 w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-2xl font-bold text-white">
-                      {project.title.charAt(0)}
-                    </span>
-                  </div>
-                  
-                  {/* GitHub Stats */}
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <Badge variant="secondary" className="text-xs flex items-center gap-1">
-                      <Star className="w-3 h-3" />
-                      {project.stars}
-                    </Badge>
-                    <Badge variant="secondary" className="text-xs flex items-center gap-1">
-                      <GitFork className="w-3 h-3" />
-                      {project.forks}
-                    </Badge>
-                  </div>
+                {/* GitHub Stats */}
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <Badge variant="secondary" className="text-xs flex items-center gap-1">
+                    <Star className="w-3 h-3" />
+                    {project.stars}
+                  </Badge>
+                  <Badge variant="secondary" className="text-xs flex items-center gap-1">
+                    <GitFork className="w-3 h-3" />
+                    {project.forks}
+                  </Badge>
                 </div>
 
                 {/* Featured Badge */}
@@ -186,13 +179,13 @@ const Projects = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <Button 
                     size="sm" 
-                    className="flex-1 glow-border"
+                    className="flex-1 glow-border text-xs sm:text-sm"
                     onClick={() => navigate(`/project/${project.id}`)}
                   >
-                    <Eye className="w-4 h-4 mr-2" />
+                    <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                     Voir les détails
                   </Button>
                   <Button 
@@ -201,7 +194,7 @@ const Projects = () => {
                     className="glass-card"
                     onClick={() => window.open(project.githubUrl, '_blank')}
                   >
-                    <Github className="w-4 h-4" />
+                    <Github className="w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 </div>
               </div>

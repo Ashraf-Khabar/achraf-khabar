@@ -129,6 +129,23 @@
     background-clip: text;
   }
 
+  /* Mobile responsivity utilities */
+  .mobile-stack {
+    @apply flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4;
+  }
+
+  .mobile-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .mobile-grid {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-6;
+  }
+
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
   .glass-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(20px);
