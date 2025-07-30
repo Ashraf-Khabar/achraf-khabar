@@ -178,10 +178,10 @@ const ProjectsWithSearch = () => {
   const displayedProjects = showAll ? filteredProjects : filteredProjects.slice(0, 4);
 
   return (
-    <section id="projects" className="py-20 bg-muted/30">
+    <section id="projects" className="py-20 bg-muted/30 relative z-10">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-16 animate-slide-up">
+          <h2 className="text-4xl font-bold gradient-text mb-4 text-shadow">
             Mes Projets
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -201,10 +201,11 @@ const ProjectsWithSearch = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {displayedProjects.map((project) => (
+          {displayedProjects.map((project, index) => (
             <Card 
               key={project.id} 
-              className="group hover:shadow-lg transition-all duration-300 overflow-hidden border-border/50"
+              className="group hover-lift glass-card transition-all duration-300 overflow-hidden border-border/50 animate-bounce-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Image */}
               <div className="relative aspect-video overflow-hidden">
