@@ -27,9 +27,9 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
+          ? "bg-background/80 backdrop-blur-xl border-b border-border shadow-lg animate-slide-down"
           : "bg-transparent"
       }`}
     >
@@ -38,32 +38,37 @@ const Header = () => {
           {/* Logo */}
           <Link
             to="/"
-            className="text-2xl font-bold gradient-text hover:scale-105 transition-transform duration-300"
+            className="text-2xl font-bold gradient-text hover:scale-105 hover-glow transition-all duration-300 group"
           >
-            Achraf KHABAR
+            <span className="group-hover:animate-wiggle inline-block">Achraf</span>
+            {" "}
+            <span className="group-hover:animate-rainbow inline-block">KHABAR</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-foreground/80 hover:text-foreground transition-colors duration-300 relative group"
+                className="text-foreground/80 hover:text-foreground transition-all duration-300 relative group hover:scale-110 animate-bounce-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full"></span>
+                <span className="group-hover:animate-wiggle inline-block">{item.name}</span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 group-hover:w-full neon-glow"></span>
               </Link>
             ))}
             
             {/* Theme Toggle */}
-            <ThemeToggle />
+            <div className="animate-bounce-in" style={{ animationDelay: "0.6s" }}>
+              <ThemeToggle />
+            </div>
             
             {/* Admin Button */}
-            <Link to="/admin">
-              <Button variant="outline" size="sm" className="glass-card">
-                <User className="w-4 h-4 mr-2" />
-                Admin
+            <Link to="/admin" className="animate-bounce-in" style={{ animationDelay: "0.7s" }}>
+              <Button variant="outline" size="sm" className="glass-card hover-glow group">
+                <User className="w-4 h-4 mr-2 group-hover:animate-heartbeat" />
+                <span className="group-hover:animate-wiggle">Admin</span>
               </Button>
             </Link>
           </div>
@@ -75,30 +80,40 @@ const Header = () => {
               variant="ghost"
               size="sm"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="hover-glow group"
             >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMenuOpen ? 
+                <X className="w-5 h-5 group-hover:animate-wiggle" /> : 
+                <Menu className="w-5 h-5 group-hover:animate-wiggle" />
+              }
             </Button>
           </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 glass-card rounded-lg p-4 animate-slide-up">
+          <div className="md:hidden mt-4 pb-4 glass-card rounded-lg p-4 animate-slide-up hover-lift">
             <div className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-foreground/80 hover:text-foreground transition-colors duration-300 py-2"
+                  className="text-foreground/80 hover:text-foreground transition-all duration-300 py-2 hover:scale-105 animate-bounce-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  {item.name}
+                  <span className="hover:animate-wiggle inline-block">{item.name}</span>
                 </Link>
               ))}
-              <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
-                <Button variant="outline" size="sm" className="w-full glass-card">
-                  <User className="w-4 h-4 mr-2" />
-                  Admin
+              <Link 
+                to="/admin" 
+                onClick={() => setIsMenuOpen(false)}
+                className="animate-bounce-in"
+                style={{ animationDelay: "0.5s" }}
+              >
+                <Button variant="outline" size="sm" className="w-full glass-card hover-glow group">
+                  <User className="w-4 h-4 mr-2 group-hover:animate-heartbeat" />
+                  <span className="group-hover:animate-wiggle">Admin</span>
                 </Button>
               </Link>
             </div>
