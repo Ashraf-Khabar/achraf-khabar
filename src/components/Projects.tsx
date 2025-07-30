@@ -7,10 +7,25 @@ import flaskosqlImage from "@/assets/flaskosql-project.jpg";
 import licencePlateImage from "@/assets/licence-plate-recognition-project.jpg";
 import studentGradeImage from "@/assets/student-grade-manager-project.jpg";
 import dataScienceImage from "@/assets/data-science-docs-project.jpg";
+import testAutomationImage from "@/assets/test-automation-lab-project.jpg";
+import smartSpenderImage from "@/assets/smartspender-project.jpg";
 
 const Projects = () => {
   const navigate = useNavigate();
   const projects = [
+    {
+      id: "test-automation-lab",
+      title: "Test Automation Lab",
+      description: "Laboratoire d'automatisation des tests utilisant Selenium et autres frameworks de test. Fournit une solution complète pour l'automatisation des tests web et API.",
+      technologies: ["HTML", "Selenium", "JavaScript", "Test Automation", "QA"],
+      githubUrl: "https://github.com/Ashraf-Khabar/Test-Automation-Lab",
+      liveUrl: null,
+      stars: 0,
+      forks: 0,
+      featured: true,
+      category: "Test Automation / QA",
+      image: testAutomationImage
+    },
     {
       id: "flaskosql",
       title: "FLASKOSQL",
@@ -38,6 +53,19 @@ const Projects = () => {
       image: licencePlateImage
     },
     {
+      id: "smartspender",
+      title: "SmartSpender",
+      description: "Application web de gestion financière intelligente pour aider les utilisateurs à gérer et organiser leur argent. Inclut des fonctionnalités de suivi de budget et de prévention des problèmes financiers.",
+      technologies: ["React", "Node.js", "Express", "MongoDB", "JavaScript"],
+      githubUrl: "https://github.com/Ashraf-Khabar/SmartSpender",
+      liveUrl: null,
+      stars: 0,
+      forks: 1,
+      featured: false,
+      category: "Web Application / FinTech",
+      image: smartSpenderImage
+    },
+    {
       id: "student-grade-manager",
       title: "Student Grade Manager",
       description: "Application web complète pour la gestion des notes étudiantes par modules, matières et enseignants. Construite avec Laravel et Oracle DB.",
@@ -57,8 +85,8 @@ const Projects = () => {
       technologies: ["Data Science", "Machine Learning", "Python", "R", "Documentation"],
       githubUrl: "https://github.com/Ashraf-Khabar/Data-Science-Docs",
       liveUrl: null,
-      stars: 3,
-      forks: 2,
+      stars: 2,
+      forks: 1,
       featured: false,
       category: "Documentation / Education",
       image: dataScienceImage
