@@ -94,17 +94,6 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            onClick={scrollToAbout}
-            className="glass-card"
-          >
-            <ArrowDown className="w-5 h-5" />
-          </Button>
-        </div>
       </div>
     </section>
   );
