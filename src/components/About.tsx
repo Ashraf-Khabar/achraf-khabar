@@ -2,8 +2,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Code, Settings, TestTube, Database, Cloud, Cpu } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t } = useLanguage();
+  
   const skills = [
     "Python", "Selenium", "Docker", "Kubernetes", "Terraform", "Ansible",
     "Jenkins", "GitHub Actions", "GitLab CI", "CI/CD", "AWS", "Azure", 
@@ -14,23 +17,23 @@ const About = () => {
   const services = [
     {
       icon: <TestTube className="w-8 h-8 text-primary" />,
-      title: "Test Automation",
-      description: "Scripts d'automatisation des tests avec Python et Selenium pour garantir la qualité"
+      title: t('about.service.automation.title'),
+      description: t('about.service.automation.desc')
     },
     {
       icon: <Settings className="w-8 h-8 text-accent" />,
-      title: "DevOps & SRE",
-      description: "Intégration et déploiement continus (CI/CD) pour des livraisons fiables"
+      title: t('about.service.devops.title'),
+      description: t('about.service.devops.desc')
     },
     {
       icon: <Database className="w-8 h-8 text-primary" />,
-      title: "Bases de Données",
-      description: "Expertise Oracle DB et MySQL avec développement d'ORM personnalisés"
+      title: t('about.service.database.title'),
+      description: t('about.service.database.desc')
     },
     {
       icon: <Cloud className="w-8 h-8 text-accent" />,
-      title: "Architecture Système",
-      description: "Conception d'architectures robustes et maintien des standards de production"
+      title: t('about.service.architecture.title'),
+      description: t('about.service.architecture.desc')
     }
   ];
 
@@ -40,10 +43,10 @@ const About = () => {
         {/* Section Title */}
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-shadow">
-            À propos de moi
+            {t('about.title')}
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            DevOps/SRE & QA Automation Engineer passionné par la fiabilité et l'automatisation
+            {t('about.subtitle')}
           </p>
         </div>
 
@@ -52,21 +55,18 @@ const About = () => {
           {/* Text Content */}
           <div className="space-y-6 animate-slide-up" style={{ animationDelay: "0.2s" }}>
             <h3 className="text-2xl font-semibold text-foreground">
-              Mon Parcours
+              {t('about.journey')}
             </h3>
             <p className="text-foreground/80 leading-relaxed">
-              Ingénieur Test Automation actuellement en poste, avec des responsabilités incluant 
-              l'assurance de la fiabilité des solutions, la garantie de l'intégration et du 
-              déploiement continus (CI/CD) en production.
+              {t('about.description1')}
             </p>
             <p className="text-foreground/80 leading-relaxed">
-              Je développe des scripts d'automatisation en utilisant Python et la bibliothèque Selenium, 
-              avec un fort intérêt pour le DevOps et l'architecture logicielle.
+              {t('about.description2')}
             </p>
             
             {/* Skills */}
             <div>
-              <h4 className="text-lg font-semibold text-foreground mb-4">Technologies Maîtrisées</h4>
+              <h4 className="text-lg font-semibold text-foreground mb-4">{t('about.skills')}</h4>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill, index) => (
                   <Badge 
@@ -121,7 +121,7 @@ const About = () => {
         {/* Services */}
         <div className="animate-slide-up" style={{ animationDelay: "0.6s" }}>
           <h3 className="text-3xl font-bold text-center gradient-text mb-12">
-            Ce que je propose
+            {t('about.services')}
           </h3>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

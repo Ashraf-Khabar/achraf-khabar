@@ -3,11 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, User, PenTool } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import LanguageToggle from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +21,11 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: "Accueil", href: "/" },
-    { name: "À propos", href: "#about" },
-    { name: "Projets", href: "#projects" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "/" },
+    { name: t('nav.about'), href: "#about" },
+    { name: t('nav.projects'), href: "#projects" },
+    { name: t('nav.blog'), href: "/blog" },
+    { name: t('nav.contact'), href: "#contact" },
   ];
 
   return (
@@ -59,8 +62,9 @@ const Header = () => {
               </Link>
             ))}
             
-            {/* Theme Toggle */}
-            <div className="animate-bounce-in" style={{ animationDelay: "0.6s" }}>
+            {/* Language & Theme Toggle */}
+            <div className="flex items-center gap-2 animate-bounce-in" style={{ animationDelay: "0.6s" }}>
+              <LanguageToggle />
               <ThemeToggle />
             </div>
             
@@ -75,6 +79,7 @@ const Header = () => {
 
           {/* Mobile Menu Button and Theme Toggle */}
           <div className="md:hidden flex items-center gap-2">
+            <LanguageToggle />
             <ThemeToggle />
             <Button
               variant="ghost"

@@ -86,6 +86,48 @@ export type Database = {
         }
         Relationships: []
       }
+      profile: {
+        Row: {
+          availability_details: string | null
+          availability_status: string
+          bio: string | null
+          created_at: string
+          github_url: string | null
+          id: string
+          linkedin_url: string | null
+          location: string | null
+          phone: string | null
+          twitter_url: string | null
+          updated_at: string
+        }
+        Insert: {
+          availability_details?: string | null
+          availability_status?: string
+          bio?: string | null
+          created_at?: string
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Update: {
+          availability_details?: string | null
+          availability_status?: string
+          bio?: string | null
+          created_at?: string
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          location?: string | null
+          phone?: string | null
+          twitter_url?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

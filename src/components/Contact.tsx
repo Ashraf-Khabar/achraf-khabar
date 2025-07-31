@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 import InteractiveCard from "./InteractiveCard";
 
 const Contact = () => {
@@ -17,6 +18,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -43,8 +45,8 @@ const Contact = () => {
 
       if (result.success) {
         toast({
-          title: "Message envoyé !",
-          description: "Je vous répondrai dans les plus brefs délais.",
+          title: t('toast.message.sent'),
+          description: t('toast.message.sent.desc'),
         });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
@@ -116,11 +118,10 @@ const Contact = () => {
         {/* Section Title */}
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-shadow animate-bounce-in">
-            Contactez-moi
+            {t('contact.title')}
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto animate-fade-in-scale" style={{ animationDelay: "0.3s" }}>
-            Vous avez un projet, une question ou simplement envie de discuter ?
-            N'hésitez pas à me contacter !
+            {t('contact.subtitle')}
           </p>
         </div>
 

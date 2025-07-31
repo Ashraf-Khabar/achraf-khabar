@@ -7,10 +7,13 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { Plus, Edit, Trash, Save, Eye, LogOut, PenTool } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Plus, Edit, Trash, Save, Eye, LogOut, PenTool, User as UserIcon, Settings } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
 import RichTextEditor from "@/components/RichTextEditor";
+import AdminProfile from "./AdminProfile";
 import type { User } from "@supabase/supabase-js";
 
 interface BlogPost {
@@ -42,6 +45,7 @@ const Admin = () => {
   });
   const [tagInput, setTagInput] = useState("");
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -71,14 +75,14 @@ const Admin = () => {
 
     if (error) {
       toast({
-        title: "Erreur de connexion",
+        title: t('toast.signin.error'),
         description: error.message,
         variant: "destructive",
       });
     } else {
       toast({
-        title: "Connexion réussie",
-        description: "Bienvenue dans l'interface d'administration !",
+        title: t('toast.signin.success'),
+        description: t('toast.signin.success.desc'),
       });
     }
   };
@@ -87,8 +91,8 @@ const Admin = () => {
     const { error } = await supabase.auth.signOut();
     if (!error) {
       toast({
-        title: "Déconnexion",
-        description: "À bientôt !",
+        title: t('toast.signout'),
+        description: t('toast.signout.desc'),
       });
     }
   };
@@ -276,17 +280,10 @@ const Admin = () => {
         {/* Header */}
         <div className="flex justify-between items-center mb-8 animate-slide-up">
           <div>
-            <h1 className="text-3xl font-bold gradient-text">Dashboard Admin</h1>
-            <p className="text-foreground/70">Gérez vos articles de blog</p>
+            <h1 className="text-3xl font-bold gradient-text">{t('admin.title')}</h1>
+            <p className="text-foreground/70">{t('admin.subtitle')}</p>
           </div>
           <div className="flex gap-2">
-            <Button 
-              onClick={() => setIsEditing(true)}
-              className="glow-border"
-            >
-              <Plus className="w-4 h-4 mr-2" />
-              Nouvel Article
-            </Button>
             <Button variant="outline" onClick={handleSignOut} className="glass-card">
               <LogOut className="w-4 h-4 mr-2" />
               Déconnexion
@@ -294,157 +291,189 @@ const Admin = () => {
           </div>
         </div>
 
-        {/* Editor */}
-        {isEditing && (
-          <Card className="glass-card p-6 mb-8 animate-slide-up">
-            <h2 className="text-xl font-semibold mb-4">
-              {currentPost.id ? "Modifier l'article" : "Nouvel article"}
-            </h2>
-            
-            <div className="grid gap-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="title">Titre</Label>
-                  <Input
-                    id="title"
-                    value={currentPost.title}
-                    onChange={(e) => setCurrentPost({...currentPost, title: e.target.value})}
-                    className="glass-card"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="cover_image">Image de couverture (URL)</Label>
-                  <Input
-                    id="cover_image"
-                    value={currentPost.cover_image || ""}
-                    onChange={(e) => setCurrentPost({...currentPost, cover_image: e.target.value})}
-                    className="glass-card"
-                  />
-                </div>
-              </div>
+        {/* Tabs for different admin sections */}
+        <Tabs defaultValue="profile" className="animate-slide-up">
+          <TabsList className="grid w-full grid-cols-2 glass-card">
+            <TabsTrigger value="profile" className="flex items-center gap-2">
+              <UserIcon className="w-4 h-4" />
+              {t('admin.profile.title')}
+            </TabsTrigger>
+            <TabsTrigger value="blog" className="flex items-center gap-2">
+              <PenTool className="w-4 h-4" />
+              {t('admin.blog.title')}
+            </TabsTrigger>
+          </TabsList>
 
-              <div>
-                <Label htmlFor="excerpt">Extrait</Label>
-                <Textarea
-                  id="excerpt"
-                  value={currentPost.excerpt}
-                  onChange={(e) => setCurrentPost({...currentPost, excerpt: e.target.value})}
-                  className="glass-card"
-                  rows={3}
-                />
-              </div>
+          <TabsContent value="profile" className="mt-6">
+            <AdminProfile />
+          </TabsContent>
 
-              <div>
-                <Label htmlFor="content">Contenu</Label>
-                <RichTextEditor
-                  content={currentPost.content || ""}
-                  onChange={(content) => setCurrentPost({...currentPost, content})}
-                  placeholder="Commencez à écrire votre article... Utilisez la barre d'outils pour formater le texte, ajouter du code et des images."
-                />
-              </div>
-
-              <div>
-                <Label>Tags</Label>
-                <div className="flex gap-2 mb-2">
-                  <Input
-                    value={tagInput}
-                    onChange={(e) => setTagInput(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && addTag()}
-                    placeholder="Ajouter un tag"
-                    className="glass-card"
-                  />
-                  <Button onClick={addTag} variant="outline" size="sm">
-                    Ajouter
-                  </Button>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {currentPost.tags?.map((tag) => (
-                    <Badge key={tag} variant="secondary" className="cursor-pointer" onClick={() => removeTag(tag)}>
-                      {tag} ×
-                    </Badge>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Switch
-                  checked={currentPost.published}
-                  onCheckedChange={(checked) => setCurrentPost({...currentPost, published: checked})}
-                />
-                <Label>Publier l'article</Label>
-              </div>
-
-              <Separator />
-
-              <div className="flex gap-2">
-                <Button onClick={handleSavePost} className="glow-border">
-                  <Save className="w-4 h-4 mr-2" />
-                  Sauvegarder
-                </Button>
-                <Button 
-                  variant="outline" 
-                  onClick={() => setIsEditing(false)}
-                  className="glass-card"
-                >
-                  Annuler
-                </Button>
-              </div>
+          <TabsContent value="blog" className="mt-6">
+            {/* New Article Button */}
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold">{t('admin.blog.title')}</h2>
+              <Button 
+                onClick={() => setIsEditing(true)}
+                className="glow-border"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                {t('admin.blog.new')}
+              </Button>
             </div>
-          </Card>
-        )}
 
-        {/* Posts List */}
-        <div className="grid gap-4 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-          <h2 className="text-xl font-semibold">Articles ({posts.length})</h2>
-          
-          {posts.map((post) => (
-            <Card key={post.id} className="glass-card p-4">
-              <div className="flex justify-between items-start">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h3 className="font-semibold">{post.title}</h3>
-                    {post.published ? (
-                      <Badge variant="default">Publié</Badge>
-                    ) : (
-                      <Badge variant="secondary">Brouillon</Badge>
-                    )}
-                  </div>
-                  <p className="text-sm text-foreground/70 mb-2">{post.excerpt}</p>
-                  <div className="flex gap-2 text-xs text-foreground/60">
-                    <span>{new Date(post.created_at).toLocaleDateString()}</span>
-                    {post.tags && <span>• {post.tags.length} tag(s)</span>}
-                  </div>
-                </div>
+            {/* Editor */}
+            {isEditing && (
+              <Card className="glass-card p-6 mb-8 animate-slide-up">
+                <h2 className="text-xl font-semibold mb-4">
+                  {currentPost.id ? "Modifier l'article" : "Nouvel article"}
+                </h2>
                 
-                <div className="flex gap-2 ml-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => {
-                      setCurrentPost(post);
-                      setIsEditing(true);
-                    }}
-                  >
-                    <Edit className="w-4 h-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => handleDeletePost(post.id)}
-                  >
-                    <Trash className="w-4 h-4" />
-                  </Button>
+                <div className="grid gap-4">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="title">Titre</Label>
+                      <Input
+                        id="title"
+                        value={currentPost.title}
+                        onChange={(e) => setCurrentPost({...currentPost, title: e.target.value})}
+                        className="glass-card"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="cover_image">Image de couverture (URL)</Label>
+                      <Input
+                        id="cover_image"
+                        value={currentPost.cover_image || ""}
+                        onChange={(e) => setCurrentPost({...currentPost, cover_image: e.target.value})}
+                        className="glass-card"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <Label htmlFor="excerpt">Extrait</Label>
+                    <Textarea
+                      id="excerpt"
+                      value={currentPost.excerpt}
+                      onChange={(e) => setCurrentPost({...currentPost, excerpt: e.target.value})}
+                      className="glass-card"
+                      rows={3}
+                    />
+                  </div>
+
+                  <div>
+                    <Label htmlFor="content">Contenu</Label>
+                    <RichTextEditor
+                      content={currentPost.content || ""}
+                      onChange={(content) => setCurrentPost({...currentPost, content})}
+                      placeholder="Commencez à écrire votre article... Utilisez la barre d'outils pour formater le texte, ajouter du code et des images."
+                    />
+                  </div>
+
+                  <div>
+                    <Label>Tags</Label>
+                    <div className="flex gap-2 mb-2">
+                      <Input
+                        value={tagInput}
+                        onChange={(e) => setTagInput(e.target.value)}
+                        onKeyPress={(e) => e.key === "Enter" && addTag()}
+                        placeholder="Ajouter un tag"
+                        className="glass-card"
+                      />
+                      <Button onClick={addTag} variant="outline" size="sm">
+                        Ajouter
+                      </Button>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {currentPost.tags?.map((tag) => (
+                        <Badge key={tag} variant="secondary" className="cursor-pointer" onClick={() => removeTag(tag)}>
+                          {tag} ×
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <Switch
+                      checked={currentPost.published}
+                      onCheckedChange={(checked) => setCurrentPost({...currentPost, published: checked})}
+                    />
+                    <Label>Publier l'article</Label>
+                  </div>
+
+                  <Separator />
+
+                  <div className="flex gap-2">
+                    <Button onClick={handleSavePost} className="glow-border">
+                      <Save className="w-4 h-4 mr-2" />
+                      Sauvegarder
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setIsEditing(false)}
+                      className="glass-card"
+                    >
+                      Annuler
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            </Card>
-          ))}
-          
-          {posts.length === 0 && (
-            <div className="text-center py-8 text-foreground/60">
-              Aucun article créé. Commencez par créer votre premier article !
+              </Card>
+            )}
+
+            {/* Posts List */}
+            <div className="grid gap-4">
+              <p className="text-sm text-foreground/70">Articles ({posts.length})</p>
+              
+              {posts.map((post) => (
+                <Card key={post.id} className="glass-card p-4">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="font-semibold">{post.title}</h3>
+                        {post.published ? (
+                          <Badge variant="default">Publié</Badge>
+                        ) : (
+                          <Badge variant="secondary">Brouillon</Badge>
+                        )}
+                      </div>
+                      <p className="text-sm text-foreground/70 mb-2">{post.excerpt}</p>
+                      <div className="flex gap-2 text-xs text-foreground/60">
+                        <span>{new Date(post.created_at).toLocaleDateString()}</span>
+                        {post.tags && <span>• {post.tags.length} tag(s)</span>}
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-2 ml-4">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setCurrentPost(post);
+                          setIsEditing(true);
+                        }}
+                      >
+                        <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleDeletePost(post.id)}
+                      >
+                        <Trash className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+              
+              {posts.length === 0 && (
+                <div className="text-center py-8 text-foreground/60">
+                  Aucun article créé. Commencez par créer votre premier article !
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );
