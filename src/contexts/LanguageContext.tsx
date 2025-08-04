@@ -65,6 +65,31 @@ const translations = {
     'contact.response.title': 'Response Time',
     'contact.response.desc': 'I usually respond within 24 hours to messages received Monday to Friday.',
     
+    
+    // Projects
+    'projects.title': 'My Projects',
+    'projects.subtitle': 'A selection of my recent achievements and personal projects',
+    'projects.featured': 'Featured Project',
+    'projects.details': 'View Details',
+    'projects.more': 'View more projects',
+    'projects.remaining': 'remaining',
+    'projects.cta.title': 'Have a project in mind?',
+    'projects.cta.description': 'Feel free to contact me to discuss your idea. I would be happy to help you make it happen!',
+    'projects.cta.button': 'Let\'s discuss your project',
+    
+    // Skills
+    'skills.title': 'Technical Skills',
+    'skills.subtitle': 'An overview of my skills and mastered technologies with interactive animations',
+    'skills.stats.technologies': 'Technologies',
+    'skills.stats.experience': 'Years of experience',
+    'skills.stats.projects': 'Completed projects',
+    'skills.stats.satisfaction': 'Client satisfaction',
+    
+    // Download CV
+    'cv.download': 'Download CV',
+    'cv.view': 'View CV online',
+    'cv.success': 'CV downloaded successfully!',
+    
     // Admin
     'admin.title': 'Admin Dashboard',
     'admin.subtitle': 'Manage your blog posts and profile',
@@ -153,6 +178,31 @@ const translations = {
     'contact.availability.freelance': 'Disponible pour freelance',
     'contact.response.title': 'Temps de réponse',
     'contact.response.desc': 'Je réponds généralement sous 24 heures aux messages reçus du lundi au vendredi.',
+    
+    
+    // Projects
+    'projects.title': 'Mes Projets',
+    'projects.subtitle': 'Une sélection de mes réalisations récentes et projets personnels',
+    'projects.featured': 'Projet Phare',
+    'projects.details': 'Voir les détails',
+    'projects.more': 'Voir plus de projets',
+    'projects.remaining': 'restants',
+    'projects.cta.title': 'Vous avez un projet en tête ?',
+    'projects.cta.description': 'N\'hésitez pas à me contacter pour discuter de votre idée. Je serais ravi de vous aider à la concrétiser !',
+    'projects.cta.button': 'Discutons de votre projet',
+    
+    // Skills
+    'skills.title': 'Compétences Techniques',
+    'skills.subtitle': 'Un aperçu de mes compétences et technologies maîtrisées avec des animations interactives',
+    'skills.stats.technologies': 'Technologies',
+    'skills.stats.experience': 'Années d\'expérience',
+    'skills.stats.projects': 'Projets complétés',
+    'skills.stats.satisfaction': 'Satisfaction client',
+    
+    // Download CV
+    'cv.download': 'Télécharger CV',
+    'cv.view': 'Voir CV en ligne',
+    'cv.success': 'CV téléchargé avec succès!',
     
     // Admin
     'admin.title': 'Dashboard Admin',

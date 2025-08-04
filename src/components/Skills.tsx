@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
 import InteractiveCard from "./InteractiveCard";
 import { Code, Server, Database, Cloud, TestTube, Settings, Brain, Cpu } from "lucide-react";
 
 const Skills = () => {
+  const { t } = useLanguage();
   const [animatedSkills, setAnimatedSkills] = useState<{[key: string]: number}>({});
   
   const technicalSkills = [
@@ -65,10 +67,10 @@ const Skills = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl font-bold gradient-text mb-4 text-shadow">
-            Compétences Techniques
+            {t('skills.title')}
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Un aperçu de mes compétences et technologies maîtrisées avec des animations interactives
+            {t('skills.subtitle')}
           </p>
         </div>
 
@@ -136,19 +138,19 @@ const Skills = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div className="glass-card p-6 hover-glow group cursor-pointer">
               <div className="text-3xl font-bold gradient-text group-hover:animate-heartbeat">15+</div>
-              <div className="text-sm text-muted-foreground">Technologies</div>
+              <div className="text-sm text-muted-foreground">{t('skills.stats.technologies')}</div>
             </div>
             <div className="glass-card p-6 hover-glow group cursor-pointer">
               <div className="text-3xl font-bold gradient-text group-hover:animate-heartbeat">5+</div>
-              <div className="text-sm text-muted-foreground">Années d'expérience</div>
+              <div className="text-sm text-muted-foreground">{t('skills.stats.experience')}</div>
             </div>
             <div className="glass-card p-6 hover-glow group cursor-pointer">
               <div className="text-3xl font-bold gradient-text group-hover:animate-heartbeat">50+</div>
-              <div className="text-sm text-muted-foreground">Projets complétés</div>
+              <div className="text-sm text-muted-foreground">{t('skills.stats.projects')}</div>
             </div>
             <div className="glass-card p-6 hover-glow group cursor-pointer">
               <div className="text-3xl font-bold gradient-text group-hover:animate-heartbeat">100%</div>
-              <div className="text-sm text-muted-foreground">Satisfaction client</div>
+              <div className="text-sm text-muted-foreground">{t('skills.stats.satisfaction')}</div>
             </div>
           </div>
         </div>

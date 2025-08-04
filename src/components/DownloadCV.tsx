@@ -1,8 +1,11 @@
 import { Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { toast } from "sonner";
 
 const DownloadCV = () => {
+  const { t } = useLanguage();
+  
   const handleDownload = () => {
     // You can replace this with your actual CV file path
     const cvUrl = "/cv-ashraf-khabar.pdf"; // Place your CV in the public folder
@@ -17,7 +20,7 @@ const DownloadCV = () => {
     link.click();
     document.body.removeChild(link);
     
-    toast.success("CV téléchargé avec succès!");
+    toast.success(t('cv.success'));
   };
 
   return (
@@ -28,7 +31,7 @@ const DownloadCV = () => {
         className="gap-2 bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg hover:shadow-xl transition-all duration-300"
       >
         <Download className="h-5 w-5" />
-        Télécharger CV
+        {t('cv.download')}
       </Button>
       
       <Button
@@ -38,7 +41,7 @@ const DownloadCV = () => {
         onClick={() => window.open("/cv-ashraf-khabar.pdf", "_blank")}
       >
         <FileText className="h-5 w-5" />
-        Voir CV en ligne
+        {t('cv.view')}
       </Button>
     </div>
   );

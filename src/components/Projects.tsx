@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Github, Star, GitFork, Eye, ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import flaskosqlImage from "@/assets/flaskosql-project.jpg";
 import licencePlateImage from "@/assets/licence-plate-recognition-project.jpg";
 import studentGradeImage from "@/assets/student-grade-manager-project.jpg";
@@ -13,6 +14,7 @@ import smartSpenderImage from "@/assets/smartspender-project.jpg";
 
 const Projects = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const [visibleProjects, setVisibleProjects] = useState(4);
   const PROJECTS_PER_PAGE = 4;
   
@@ -103,10 +105,10 @@ const Projects = () => {
         {/* Section Title */}
         <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-            Mes Projets
+            {t('projects.title')}
           </h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Une sélection de mes réalisations récentes et projets personnels
+            {t('projects.subtitle')}
           </p>
         </div>
 
@@ -144,10 +146,10 @@ const Projects = () => {
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4">
-                    <Badge className="bg-gradient-to-r from-primary to-accent text-white border-0">
-                      <Star className="w-3 h-3 mr-1" />
-                      Projet Phare
-                    </Badge>
+                  <Badge className="bg-gradient-to-r from-primary to-accent text-white border-0">
+                    <Star className="w-3 h-3 mr-1" />
+                    {t('projects.featured')}
+                  </Badge>
                   </div>
                 )}
                 
@@ -218,7 +220,7 @@ const Projects = () => {
                     onClick={() => navigate(`/project/${project.id}`)}
                   >
                     <Eye className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                    Voir les détails
+                    {t('projects.details')}
                   </Button>
                   <Button 
                     size="sm" 
@@ -243,7 +245,7 @@ const Projects = () => {
               onClick={() => setVisibleProjects(prev => Math.min(prev + PROJECTS_PER_PAGE, projects.length))}
             >
               <ChevronDown className="w-4 h-4 mr-2 group-hover:animate-bounce" />
-              Voir plus de projets ({projects.length - visibleProjects} restants)
+              {t('projects.more')} ({projects.length - visibleProjects} {t('projects.remaining')})
             </Button>
           </div>
         )}
@@ -252,18 +254,17 @@ const Projects = () => {
         <div className="text-center mt-16 animate-slide-up" style={{ animationDelay: "0.8s" }}>
           <div className="glass-card p-8 max-w-2xl mx-auto">
             <h3 className="text-2xl font-semibold gradient-text mb-4">
-              Vous avez un projet en tête ?
+              {t('projects.cta.title')}
             </h3>
             <p className="text-foreground/70 mb-6">
-              N'hésitez pas à me contacter pour discuter de votre idée. 
-              Je serais ravi de vous aider à la concrétiser !
+              {t('projects.cta.description')}
             </p>
             <Button 
               size="lg" 
               className="glow-border pulse-glow"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Discutons de votre projet
+              {t('projects.cta.button')}
             </Button>
           </div>
         </div>
