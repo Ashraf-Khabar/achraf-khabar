@@ -42,6 +42,9 @@ const translations = {
     'about.service.architecture.title': 'System Architecture',
     'about.service.architecture.desc': 'Designing robust architectures and maintaining production standards',
     
+    // Hero
+    'hero.welcome': 'Welcome to my portfolio',
+    
     // Contact
     'contact.title': 'Contact Me',
     'contact.subtitle': 'Have a project, a question, or just want to chat? Feel free to contact me!',
@@ -50,9 +53,11 @@ const translations = {
     'contact.form.email': 'Email',
     'contact.form.subject': 'Subject',
     'contact.form.message': 'Message',
+    'contact.form.phone': 'Phone',
     'contact.form.submit': 'Send Message',
     'contact.form.sending': 'Sending...',
     'contact.info.title': 'Contact Information',
+    'contact.info.location': 'Location',
     'contact.social.title': 'Find me on',
     'contact.availability.title': 'Availability',
     'contact.availability.status': 'Currently under contract but open to discussions',
@@ -126,6 +131,9 @@ const translations = {
     'about.service.architecture.title': 'Architecture Système',
     'about.service.architecture.desc': 'Conception d\'architectures robustes et maintien des standards de production',
     
+    // Hero
+    'hero.welcome': 'Bienvenue sur mon portfolio',
+    
     // Contact
     'contact.title': 'Contactez-moi',
     'contact.subtitle': 'Vous avez un projet, une question ou simplement envie de discuter ? N\'hésitez pas à me contacter !',
@@ -133,10 +141,12 @@ const translations = {
     'contact.form.name': 'Nom',
     'contact.form.email': 'Email',
     'contact.form.subject': 'Sujet',
-    'contact.form.message': 'Message',
+    'contact.form.message': 'Décrivez votre projet ou votre demande...',
+    'contact.form.phone': 'Téléphone',
     'contact.form.submit': 'Envoyer le message',
     'contact.form.sending': 'Envoi en cours...',
     'contact.info.title': 'Informations de contact',
+    'contact.info.location': 'Localisation',
     'contact.social.title': 'Retrouvez-moi sur',
     'contact.availability.title': 'Disponibilité',
     'contact.availability.status': 'Actuellement en contrat mais ouvert aux discussions',

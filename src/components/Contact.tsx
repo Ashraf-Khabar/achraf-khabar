@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 import InteractiveCard from "./InteractiveCard";
 
 const Contact = () => {
@@ -17,8 +18,29 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [profile, setProfile] = useState<any>(null);
   const { toast } = useToast();
   const { t } = useLanguage();
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const { data } = await supabase
+        .from("profile")
+        .select("*")
+        .limit(1)
+        .single();
+      
+      if (data) {
+        setProfile(data);
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -54,8 +76,8 @@ const Contact = () => {
       }
     } catch (error) {
       toast({
-        title: "Erreur",
-        description: "Impossible d'envoyer le message. Veuillez réessayer.",
+        title: t('toast.error'),
+        description: t('toast.message.error'),
         variant: "destructive",
       });
     } finally {
@@ -72,14 +94,14 @@ const Contact = () => {
     },
     {
       icon: <Phone className="w-5 h-5" />,
-      title: "Téléphone",
-      value: "+33 6 XX XX XX XX",
-      link: "tel:+33600000000"
+      title: t('contact.form.phone'),
+      value: profile?.phone || "+33 6 XX XX XX XX",
+      link: profile?.phone ? `tel:${profile.phone}` : "tel:+33600000000"
     },
     {
       icon: <MapPin className="w-5 h-5" />,
-      title: "Localisation",
-      value: "Paris, France",
+      title: t('contact.info.location'),
+      value: profile?.location || "Paris, France",
       link: null
     }
   ];
@@ -88,22 +110,43 @@ const Contact = () => {
     {
       icon: <Github className="w-5 h-5" />,
       name: "GitHub",
-      url: "https://github.com/Ashraf-Khabar/",
+      url: profile?.github_url || "https://github.com/Ashraf-Khabar/",
       color: "hover:text-foreground"
     },
     {
       icon: <Linkedin className="w-5 h-5" />,
       name: "LinkedIn",
-      url: "https://www.linkedin.com/in/achraf-khabar/",
+      url: profile?.linkedin_url || "https://www.linkedin.com/in/achraf-khabar/",
       color: "hover:text-blue-400"
     },
     {
       icon: <Twitter className="w-5 h-5" />,
       name: "Twitter",
-      url: "https://twitter.com",
+      url: profile?.twitter_url || "https://twitter.com",
       color: "hover:text-blue-400"
     }
-  ];
+  ].filter(link => link.url && link.url !== "");
+
+  const getAvailabilityStatus = () => {
+    if (!profile) return { text: t('contact.availability.status'), color: 'text-orange-400' };
+    
+    switch (profile.availability_status) {
+      case 'available':
+        return { text: t('admin.availability.available'), color: 'text-green-400' };
+      case 'freelance':
+        return { text: t('contact.availability.freelance'), color: 'text-green-400' };
+      case 'busy':
+        return { text: t('admin.availability.busy'), color: 'text-red-400' };
+      case 'cdi':
+        return { text: t('admin.availability.cdi'), color: 'text-blue-400' };
+      case 'portage':
+        return { text: t('admin.availability.portage'), color: 'text-purple-400' };
+      case 'open_to_opportunities':
+        return { text: t('admin.availability.contract'), color: 'text-orange-400' };
+      default:
+        return { text: t('contact.availability.status'), color: 'text-orange-400' };
+    }
+  };
 
   return (
     <section id="contact" className="py-20 px-6 relative overflow-hidden">
@@ -128,12 +171,12 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <InteractiveCard className="glass-card p-8 animate-slide-up hover-lift" style={{ animationDelay: "0.2s" }}>
-            <h3 className="text-2xl font-semibold mb-6 gradient-text">Envoyez-moi un message</h3>
+            <h3 className="text-2xl font-semibold mb-6 gradient-text">{t('contact.form.title')}</h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="animate-bounce-in" style={{ animationDelay: "0.4s" }}>
-                  <Label htmlFor="name" className="text-foreground font-medium">Nom *</Label>
+                  <Label htmlFor="name" className="text-foreground font-medium">{t('contact.form.name')} *</Label>
                   <Input
                     id="name"
                     name="name"
@@ -141,11 +184,11 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     className="glass-card hover:border-primary/50 transition-all duration-300 focus:neon-glow"
-                    placeholder="Votre nom"
+                    placeholder={t('contact.form.name')}
                   />
                 </div>
                 <div className="animate-bounce-in" style={{ animationDelay: "0.5s" }}>
-                  <Label htmlFor="email" className="text-foreground font-medium">Email *</Label>
+                  <Label htmlFor="email" className="text-foreground font-medium">{t('contact.form.email')} *</Label>
                   <Input
                     id="email"
                     name="email"
@@ -154,13 +197,13 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     className="glass-card hover:border-primary/50 transition-all duration-300 focus:neon-glow"
-                    placeholder="votre@email.com"
+                    placeholder={t('contact.form.email')}
                   />
                 </div>
               </div>
 
               <div className="animate-bounce-in" style={{ animationDelay: "0.6s" }}>
-                <Label htmlFor="subject" className="text-foreground font-medium">Sujet *</Label>
+                <Label htmlFor="subject" className="text-foreground font-medium">{t('contact.form.subject')} *</Label>
                 <Input
                   id="subject"
                   name="subject"
@@ -168,12 +211,12 @@ const Contact = () => {
                   onChange={handleInputChange}
                   required
                   className="glass-card hover:border-primary/50 transition-all duration-300 focus:neon-glow"
-                  placeholder="Sujet de votre message"
+                  placeholder={t('contact.form.subject')}
                 />
               </div>
 
               <div className="animate-bounce-in" style={{ animationDelay: "0.7s" }}>
-                <Label htmlFor="message" className="text-foreground font-medium">Message *</Label>
+                <Label htmlFor="message" className="text-foreground font-medium">{t('contact.form.message')} *</Label>
                 <Textarea
                   id="message"
                   name="message"
@@ -182,7 +225,7 @@ const Contact = () => {
                   required
                   className="glass-card hover:border-primary/50 transition-all duration-300 focus:neon-glow resize-none"
                   rows={6}
-                  placeholder="Décrivez votre projet ou votre demande..."
+                  placeholder={t('contact.form.message')}
                 />
               </div>
 
@@ -195,12 +238,12 @@ const Contact = () => {
                 {isSubmitting ? (
                   <>
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                    Envoi en cours...
+                    {t('contact.form.sending')}
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4 mr-2 group-hover:animate-wiggle" />
-                    Envoyer le message
+                    {t('contact.form.submit')}
                   </>
                 )}
               </Button>
@@ -210,7 +253,7 @@ const Contact = () => {
           {/* Contact Info */}
           <div className="space-y-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
             <div>
-              <h3 className="text-2xl font-semibold mb-6 gradient-text">Informations de contact</h3>
+              <h3 className="text-2xl font-semibold mb-6 gradient-text">{t('contact.info.title')}</h3>
               
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
@@ -250,7 +293,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div className="animate-bounce-in" style={{ animationDelay: "1s" }}>
-              <h4 className="text-lg font-semibold mb-4 gradient-text">Retrouvez-moi sur</h4>
+              <h4 className="text-lg font-semibold mb-4 gradient-text">{t('contact.social.title')}</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
                   <Button
@@ -269,21 +312,21 @@ const Contact = () => {
 
             {/* Availability */}
             <InteractiveCard className="glass-card p-6 animate-bounce-in" style={{ animationDelay: "1.4s" }}>
-              <h4 className="font-semibold mb-2 text-foreground">Disponibilité</h4>
+              <h4 className="font-semibold mb-2 text-foreground">{t('contact.availability.title')}</h4>
               <p className="text-sm text-foreground/70 mb-2">
-                Actuellement ouvert aux nouvelles opportunités
+                {profile?.availability_details || t('contact.availability.status')}
               </p>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-400 animate-heartbeat"></div>
-                <span className="text-xs text-green-400 font-medium">Disponible pour freelance</span>
+                <div className={`w-2 h-2 rounded-full animate-heartbeat ${getAvailabilityStatus().color.includes('green') ? 'bg-green-400' : getAvailabilityStatus().color.includes('red') ? 'bg-red-400' : getAvailabilityStatus().color.includes('blue') ? 'bg-blue-400' : getAvailabilityStatus().color.includes('purple') ? 'bg-purple-400' : 'bg-orange-400'}`}></div>
+                <span className={`text-xs font-medium ${getAvailabilityStatus().color}`}>{getAvailabilityStatus().text}</span>
               </div>
             </InteractiveCard>
 
             {/* Response Time */}
             <InteractiveCard className="glass-card p-6 animate-bounce-in" style={{ animationDelay: "1.6s" }}>
-              <h4 className="font-semibold mb-2 text-foreground">Temps de réponse</h4>
+              <h4 className="font-semibold mb-2 text-foreground">{t('contact.response.title')}</h4>
               <p className="text-sm text-foreground/70">
-                Je réponds généralement sous <span className="font-medium text-primary animate-pulse">24 heures</span> aux messages reçus du lundi au vendredi.
+                {t('contact.response.desc')}
               </p>
             </InteractiveCard>
           </div>

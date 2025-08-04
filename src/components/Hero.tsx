@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Github, Linkedin, Mail, Code, Sparkles } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import DownloadCV from "./DownloadCV";
 import TypingEffect from "./TypingEffect";
 import heroImage from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
+  const { t } = useLanguage();
+  
   const scrollToAbout = () => {
     document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -135,15 +138,15 @@ const Hero = () => {
           {/* Greeting */}
           <div className="inline-flex items-center px-2 sm:px-4 py-1.5 sm:py-2 rounded-full glass-card mb-4 sm:mb-6">
             <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-accent mr-1.5 sm:mr-2 animate-spin" style={{ animationDuration: "3s" }} />
-            <span className="text-xs sm:text-sm text-foreground/80">Bienvenue sur mon portfolio</span>
+            <span className="text-xs sm:text-sm text-foreground/80">{t('hero.welcome')}</span>
           </div>
 
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="block text-foreground mb-2 animate-bounce-in">Salut, je suis</span>
+            <span className="block text-foreground mb-2 animate-bounce-in">{t('hero.greeting')}</span>
             <span className="gradient-text text-shadow">
               <TypingEffect 
-                words={["DevOps Engineer", "Software Engineer", "QA Automation", "Cloud Architect"]}
+                words={[t('hero.title'), "Software Engineer", "QA Automation", "Cloud Architect"]}
                 speed={150}
                 deleteSpeed={75}
                 delayBetweenWords={2000}
@@ -153,8 +156,7 @@ const Hero = () => {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl text-foreground/70 max-w-3xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: "1s" }}>
-            Passionné par la création d'expériences web modernes et innovantes. 
-            Je transforme les idées en réalité numérique.
+            {t('hero.description')}
           </p>
 
           {/* CTA Buttons */}
@@ -165,16 +167,17 @@ const Hero = () => {
               onClick={scrollToAbout}
             >
               <Code className="w-5 h-5 mr-2" />
-              Découvrir mon travail
+              {t('hero.cta.projects')}
             </Button>
             
             <Button 
               variant="outline" 
               size="lg" 
               className="glass-card text-lg px-8 py-3 hover:scale-105 transition-transform duration-300"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             >
               <Mail className="w-5 h-5 mr-2" />
-              Me contacter
+              {t('hero.cta.contact')}
             </Button>
           </div>
 
